@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>King Maker Society — King's Media Portal</title>
   <style>
-    :root { color-scheme: light; }
+    :root { color-scheme: dark; }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-      background: #0a0a0a url('https://raw.githubusercontent.com/kingmakersocialwork-netizen/kings-media-portal/main/1%20(1).webp') center/cover no-repeat fixed;
+      background: #080808;
       color: #e8e8e8;
       min-height: 100vh;
       overflow-x: hidden;
+    }
+
+    /* ── ANIMATED CANVAS BACKGROUND ── */
+    #kms-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
     }
 
     /* ── ENTRY SCREEN ── */
     #entryScreen {
       position: fixed;
       inset: 0;
-      background: #0a0a0a url('https://raw.githubusercontent.com/kingmakersocialwork-netizen/kings-media-portal/main/1%20(1).webp') center/cover no-repeat;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -28,25 +36,33 @@
       z-index: 100;
       padding: 24px;
     }
-    #entryScreen::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.65);
-      z-index: 0;
+
+    .entry-logo {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 12px rgba(184,145,42,0.45));
+      animation: logoFloat 4s ease-in-out infinite;
     }
-    #entryScreen > * { position: relative; z-index: 1; }
 
-    .entry-logo { margin-bottom: 28px; }
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0px); filter: drop-shadow(0 0 12px rgba(184,145,42,0.45)); }
+      50% { transform: translateY(-6px); filter: drop-shadow(0 0 22px rgba(184,145,42,0.7)); }
+    }
 
-    .entry-heading {
-      font-size: 11px;
+    .entry-brand {
+      font-size: 9px;
       font-weight: 700;
       letter-spacing: 5px;
       color: #b8912a;
       text-transform: uppercase;
       text-align: center;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
+      position: relative;
+      z-index: 1;
     }
 
     .entry-sub {
@@ -57,24 +73,43 @@
       text-transform: uppercase;
       text-align: center;
       margin-bottom: 6px;
+      position: relative;
+      z-index: 1;
     }
 
     .entry-desc {
-      font-size: 12px;
-      color: #555;
+      font-size: 11px;
+      color: #444;
       letter-spacing: 1px;
       text-align: center;
       margin-bottom: 36px;
       text-transform: uppercase;
+      position: relative;
+      z-index: 1;
     }
 
     .entry-card {
-      background: #121212;
+      background: rgba(14,14,14,0.88);
       border: 1px solid #1e1e1e;
       border-radius: 16px;
       padding: 32px 28px;
       width: 100%;
       max-width: 380px;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 0 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(184,145,42,0.06);
+    }
+
+    /* Subtle gold top border glow on card */
+    .entry-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(184,145,42,0.5), transparent);
+      border-radius: 50%;
     }
 
     .entry-card-title {
@@ -98,99 +133,107 @@
       letter-spacing: 1.5px;
       color: #555;
       text-transform: uppercase;
-      margin-bottom: 6px;
       display: block;
+      margin-bottom: 6px;
     }
 
     .field-input {
       width: 100%;
-      background: #0e0e0e;
-      border: 1px solid #222;
-      border-radius: 10px;
-      color: #fff;
-      font-size: 14px;
-      padding: 13px 14px;
+      background: #0f0f0f;
+      border: 1px solid #1e1e1e;
+      border-radius: 8px;
+      padding: 11px 14px;
+      font-size: 13px;
+      color: #e8e8e8;
       outline: none;
-      transition: border-color 0.15s;
-      margin-bottom: 14px;
-      font-family: inherit;
+      margin-bottom: 16px;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
-
     .field-input::placeholder { color: #333; }
-    .field-input:focus { border-color: #b8912a; }
-
-    .entry-btn {
-      width: 100%;
-      background: #b8912a;
-      color: #000;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      border: none;
-      border-radius: 10px;
-      padding: 15px;
-      cursor: pointer;
-      transition: background 0.15s, transform 0.08s;
-      margin-top: 4px;
-    }
-
-    .entry-btn:hover { background: #cfa030; }
-    .entry-btn:active { transform: scale(0.98); }
-    .entry-btn:disabled { background: #2a2a2a; color: #555; cursor: default; }
-
-    .entry-legal {
-      font-size: 10px;
-      color: #2e2e2e;
-      text-align: center;
-      margin-top: 16px;
-      line-height: 1.6;
+    .field-input:focus {
+      border-color: #b8912a44;
+      box-shadow: 0 0 0 3px rgba(184,145,42,0.08);
     }
 
     .entry-error {
       font-size: 11px;
-      color: #c0392b;
-      letter-spacing: 0.5px;
-      margin-top: -8px;
-      margin-bottom: 10px;
+      color: #cc4444;
+      margin-bottom: 12px;
       display: none;
     }
+    .entry-error.show { display: block; }
 
-    .entry-success { text-align: center; padding: 10px 0; }
-    .entry-success-icon { font-size: 32px; margin-bottom: 10px; }
-    .entry-success-title { font-size: 14px; font-weight: 700; color: #b8912a; margin-bottom: 6px; }
-    .entry-success-sub { font-size: 12px; color: #555; }
+    .entry-btn {
+      width: 100%;
+      background: #b8912a;
+      border: none;
+      border-radius: 8px;
+      padding: 13px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #000;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .entry-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+    }
+    .entry-btn:hover {
+      background: #cda032;
+      box-shadow: 0 0 24px rgba(184,145,42,0.4);
+      transform: translateY(-1px);
+    }
+    .entry-btn:active { transform: translateY(0); }
+
+    .entry-tos {
+      font-size: 10px;
+      color: #2a2a2a;
+      text-align: center;
+      margin-top: 16px;
+      line-height: 1.5;
+    }
 
     /* ── PORTAL ── */
     #portal {
       display: none;
-      min-height: 100vh;
       flex-direction: column;
+      min-height: 100vh;
       position: relative;
-    }
-    #portal::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.82);
-      z-index: 0;
-      pointer-events: none;
+      z-index: 1;
     }
     #portal.open { display: flex; }
-    #portal > * { position: relative; z-index: 1; }
 
     /* Header */
     .ph {
-      background: #0f0f0f;
-      border-bottom: 1px solid #1a1a1a;
+      background: rgba(10,10,10,0.92);
+      border-bottom: 1px solid #181818;
       padding: 12px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     .ph-left { display: flex; align-items: center; gap: 12px; }
+
+    .ph-logo {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 6px rgba(184,145,42,0.3));
+    }
 
     .ph-text-top {
       font-size: 8px;
@@ -225,37 +268,49 @@
 
     /* Tabs */
     .pt {
-      background: #0f0f0f;
-      border-bottom: 1px solid #1a1a1a;
+      background: rgba(10,10,10,0.85);
+      border-bottom: 1px solid #181818;
       padding: 0 24px;
       display: flex;
       gap: 0;
       flex-shrink: 0;
       overflow-x: auto;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
+    .pt::-webkit-scrollbar { height: 2px; }
+    .pt::-webkit-scrollbar-track { background: transparent; }
+    .pt::-webkit-scrollbar-thumb { background: #1e1e1e; border-radius: 2px; }
 
     .ptab {
       padding: 12px 16px;
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 1.5px;
-      text-transform: uppercase;
       color: #333;
+      text-transform: uppercase;
       cursor: pointer;
       border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
-      transition: color 0.15s, border-color 0.15s;
       white-space: nowrap;
-      flex-shrink: 0;
+      transition: color 0.15s, border-color 0.15s;
+      user-select: none;
     }
     .ptab:hover { color: #666; }
-    .ptab.on { color: #b8912a; border-bottom-color: #b8912a; }
+    .ptab.on {
+      color: #b8912a;
+      border-bottom-color: #b8912a;
+    }
 
-    /* Body */
-    .pb {
+    /* Content area */
+    .pc {
       flex: 1;
       overflow-y: auto;
-      padding: 28px 24px 80px;
+      padding: 32px 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .pc-inner {
       max-width: 860px;
       width: 100%;
     }
@@ -269,7 +324,7 @@
       justify-content: space-between;
       margin-bottom: 18px;
       padding-bottom: 14px;
-      border-bottom: 1px solid #171717;
+      border-bottom: 1px solid #151515;
     }
 
     .pp-title {
@@ -290,7 +345,7 @@
     .pp-text {
       font-size: 13px;
       line-height: 1.9;
-      color: #999;
+      color: #888;
       white-space: pre-wrap;
       word-break: break-word;
     }
@@ -298,54 +353,40 @@
     .pp-empty {
       padding: 60px 0;
       text-align: center;
-      color: #222;
+      color: #1e1e1e;
     }
     .pp-empty-icon { font-size: 30px; margin-bottom: 12px; }
     .pp-empty-lbl { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
 
-    /* Coming Soon Section */
-    .coming-soon-divider {
-      margin: 40px 0 24px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
+    /* Coming Soon section */
+    .cs {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid #111;
     }
-
-    .coming-soon-divider-line {
-      flex: 1;
-      height: 1px;
-      background: #171717;
-    }
-
-    .coming-soon-divider-label {
-      font-size: 9px;
+    .cs-label {
+      font-size: 8px;
       font-weight: 700;
       letter-spacing: 3px;
-      color: #2a2a2a;
+      color: #1e1e1e;
       text-transform: uppercase;
+      margin-bottom: 16px;
     }
-
-    .cs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 12px;
-    }
-
-    .cs-card {
-      background: #0f0f0f;
-      border: 1px solid #171717;
-      border-radius: 12px;
-      padding: 18px;
+    .cs-items { display: grid; gap: 10px; }
+    .cs-item {
+      background: #0d0d0d;
+      border: 1px solid #131313;
+      border-radius: 10px;
+      padding: 14px 16px;
       position: relative;
       overflow: hidden;
     }
-
-    .cs-card::before {
+    .cs-item::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #b8912a22, #b8912a55, #b8912a22);
+      left: 0; top: 20%; bottom: 20%;
+      width: 2px;
+      background: linear-gradient(180deg, #b8912a22, #b8912a55, #b8912a22);
     }
 
     .cs-badge {
@@ -365,14 +406,14 @@
     .cs-title {
       font-size: 13px;
       font-weight: 800;
-      color: #3a3a3a;
+      color: #252525;
       letter-spacing: 0.5px;
       margin-bottom: 6px;
     }
 
     .cs-desc {
       font-size: 11px;
-      color: #282828;
+      color: #1e1e1e;
       line-height: 1.5;
     }
 
@@ -381,9 +422,9 @@
       position: fixed;
       bottom: 16px;
       right: 18px;
-      background: #111;
+      background: #0f0f0f;
       border: 1px solid #1c1c1c;
-      color: #303030;
+      color: #282828;
       font-size: 9px;
       font-weight: 700;
       letter-spacing: 1.5px;
@@ -391,48 +432,37 @@
       padding: 6px 12px;
       border-radius: 6px;
       cursor: pointer;
+      z-index: 50;
       transition: color 0.15s, border-color 0.15s;
     }
-    .lock-pill:hover { color: #b8912a; border-color: #b8912a33; }
+    .lock-pill:hover { color: #555; border-color: #333; }
 
-    /* Spinner */
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .spinner {
-      width: 18px; height: 18px;
-      border: 2px solid #333;
-      border-top-color: #b8912a;
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      margin: 0 auto;
+    /* scrollbar */
+    .pc::-webkit-scrollbar { width: 3px; }
+    .pc::-webkit-scrollbar-track { background: transparent; }
+    .pc::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 3px; }
+
+    @media (max-width: 480px) {
+      .entry-sub { font-size: 18px; }
+      .entry-card { padding: 24px 18px; }
+      .pc { padding: 24px 16px; }
     }
   </style>
 </head>
 <body>
 
-<!-- CONTENT DATA — updated June 5, 2026 -->
-<script type="application/json" id="kms-fightiq-data">
-{"content": "FIGHT IQ BREAKDOWN — WEEK OF JUNE 5, 2026\n\nTopic: How to Read Your Opponent in the First 90 Seconds\n\nEvery fight tells you something before the real action starts. Most fighters miss it. The ones who win more than they lose have learned to read the first 90 seconds like a page from a book. Here is what to look for and what to do with what you see.\n\n---\n\nSECTION 1: THE FOUR THINGS YOU ARE LOOKING FOR IN THE FIRST 90 SECONDS\n\n1. Where They Put Their Weight\nWatch the feet. A fighter who loads onto their back foot is a counterpuncher — they want you to come forward. A fighter who sits centered or leans forward is a pressure fighter who wants to control distance. This tells you whether your job is to force them to lead or to make them chase.\n\n2. How They React to Your Jab\nThrow the jab early, not to hurt — to ask a question. Watch what happens. Do they roll under it? Do they step back? Do they parry high? Do they freeze? Their reaction to your first jab tells you exactly how they were trained to handle pressure on the outside. That answer changes everything about your game plan.\n\n3. Where Their Eyes Go\nMost fighters look at what they are afraid of. A fighter who keeps dropping their eyes to your body is worried about body shots and will likely shell up when you go downstairs. A fighter who watches your lead shoulder is waiting for the cross. Once you see where their eyes are focused, you know what they are defending — which means you know what they are leaving open.\n\n4. Their Reset Pattern\nAfter every exchange, watch how they reset. Do they step back to the same spot every time? Do they circle in one direction? Do they drop their hands on the way out? Fighters have patterns they do not know they have. Find the pattern and it becomes a trap.\n\n---\n\nSECTION 2: THE TECHNIQUE BREAKDOWN — THE DOUBLE JAB TIMING TRAP\n\nWhat it is:\nA two-jab combination where the first jab is thrown at half speed to get a read, and the second jab is thrown at full speed timed to land when the opponent reacts to the first one.\n\nHow it works:\n\nStep 1: Throw a lazy jab at about 60 percent. Not a real attack. A probe. You are not trying to land. You are trying to make them move.\n\nStep 2: Watch what they do. Most trained fighters will either parry, roll, or step back. Each response creates a predictable window.\n\nStep 3: The second jab goes immediately after their reaction — not when they finish moving, but while they are mid-movement. This is the window where their weight is committed and they cannot change direction.\n\nWhy it works:\nFighters react to the first jab and then momentarily relax their guard because the threat seems to have passed. The second jab arrives in that split second of relaxation.\n\nWhen to use it:\nUse this against fighters who have sharp defensive reactions and are difficult to hit with a telegraphed straight shot. The first jab makes them feel like they solved the problem. The second jab shows them they did not.\n\nDrills to develop this:\nHave your training partner stand in front of you and tell you their preferred parry before you throw. Practice timing the second jab to land during the parry, not after. Once you can do it knowing what is coming, start doing it without the verbal cue.\n\n---\n\nSECTION 3: RING INTELLIGENCE MOMENT — CONTROLLING THE CENTER\n\nThe center of the ring is not just a position. It is leverage.\n\nWhen you own the center, your opponent has less space behind them. Every time they move backward, they are moving toward the ropes or the corner. You are not. This means you can take risks they cannot — because their mistakes run out of space before yours do.\n\nMost fighters chase their opponent around the ring without understanding why the center matters. The goal is not to stand in the middle and brawl. The goal is to use the center to force bad geometry on your opponent.\n\nThree ways to reclaim the center when you lose it:\n\n1. The Step-In Angle: Instead of walking straight forward and chasing, take a 45-degree step to the outside of their lead foot. This repositions you and forces them to turn, giving you the center back without walking into a straight shot.\n\n2. The Feint and Walk: Throw a feint to make them move, then walk into the space they vacated. You are not chasing them. You are moving into where they were while they are focused on getting away from where you were.\n\n3. Cut the Ring: Stay tight on their exit path. When they try to circle out, step to cut their angle off rather than following them in a straight line. Make them feel like the ring is getting smaller.\n\n---\n\nSECTION 4: FIGHT IQ PRINCIPLE OF THE WEEK\n\nDo not fight the whole fight at once.\n\nEvery round has a beginning, a middle, and an end. Every fight has rounds that tell different stories. The fighter who wins is often not the most talented fighter in the gym — they are the fighter who can compartmentalize, adjust, and start fresh when they need to.\n\nIf a round went badly, that round is over. The next round is new information. What did you learn? What did they show you? What are you going to test in the next three minutes?\n\nFighting is problem solving under pressure. The best fighters stay curious even when they are losing. They treat a bad round as data, not failure.\n\n---\n\nSECTION 5: THIS WEEK'S STUDY ASSIGNMENT\n\nWatch one full fight from any of these fighters and look specifically for how they use the jab as a reading tool rather than a scoring tool:\n\n- Vasyl Lomachenko (any fight from 2017 to 2019)\n- George Foreman vs Muhammad Ali (Rumble in the Jungle)\n- Israel Adesanya vs Robert Whittaker II\n\nAfter you watch, write down three specific moments where the fighter used a non-damaging strike to set up a damaging one. Bring those moments to the group discussion this week.\n\nIf you want your breakdown featured in next week's Fight IQ section, send it to @kingmakersocial.", "date": "June 5, 2026"}
-</script>
-<script type="application/json" id="kms-brief-data">
-{"content": "SECTION 1: WEEKLY CONTENT THEME\n\nTheme: Visibility Over Perfection\n\nThe biggest thing holding most martial artists back from building a real brand is waiting until everything is perfect. The lighting is not right. The clip is not clean enough. The caption needs more work. Meanwhile, other fighters with half your skill are posting every day and building audiences you can only watch from the sidelines.\n\nThis week the content focuses on one thing: showing up and being seen. Raw is real. Consistent beats polished every single time.\n\n---\n\nSECTION 2: 5 CONTENT IDEAS FOR THE WEEK\n\nIdea 1\nFormat: Reel\nTopic: \"I almost did not post this\"\nHook: \"Almost deleted this. Posted it anyway. Here is why.\"\nWhy it works: The self-aware post performs extremely well because it breaks the fourth wall. You are not pretending to be a content machine. You are being honest about the resistance — and your audience will respect you for it.\nCTA: Follow for the real side of being a martial artist.\n\nIdea 2\nFormat: Carousel\nTopic: \"5 reasons your martial arts page is not growing (and what to fix)\"\nHook: \"Your content is not the problem. This is.\"\nWhy it works: Specific, educational carousels in the martial arts niche are consistently saved and shared. Fighters are always looking for a tactical edge — even off the mat.\nCTA: Save this before your next posting session.\n\nIdea 3\nFormat: Reel\nTopic: \"Training footage — no music, no filter, no edits\"\nHook: Start the video mid-rep. No intro. No caption explanation. Let the work speak.\nWhy it works: Raw, unedited training content is outperforming heavily produced clips right now. The algorithm wants watch time. Authenticity keeps people watching.\nCTA: This is the work. Follow for more of the real thing.\n\nIdea 4\nFormat: Single Post\nTopic: \"One line that changed how I train\"\nHook: One powerful sentence. Dark background. Bold white text. No elaboration needed.\nWhy it works: One-line posts that stop the scroll drive shares from fighters who feel it instantly. Keep it short. Make it hit hard.\nCTA: Send this to someone who needs to hear it.\n\nIdea 5\nFormat: YouTube Short or TikTok\nTopic: \"Why I started posting my training even when I did not feel ready\"\nHook: \"I was embarrassed to post. Then I realized nobody cares about your ego. They care about your journey.\"\nWhy it works: Vulnerability from a real martial artist hits differently than motivational content from someone who has never stepped in a gym. Your story is the content.\nCTA: What is stopping you from posting? Drop it in the comments.\n\n---\n\nSECTION 3: REEL HOOK BANK\n\nHook 1: \"Your content does not have to be perfect. It has to be posted.\"\nWhy it works: Direct, simple, and immediately relatable to every martial artist who has talked themselves out of posting.\n\nHook 2: \"The fighter with 500 followers who posts every day will build a bigger career than the one with talent who posts once a month.\"\nWhy it works: Reframes success as consistency over skill. Gets comments from people who agree and people who push back — both drive reach.\n\nHook 3: \"I used to think my content had to be perfect. Then I looked at what actually performed.\"\nWhy it works: Curiosity gap combined with personal experience. People will watch to find out what performed.\n\nHook 4: \"Stop hiding behind the gym. Let people see who you are.\"\nWhy it works: Challenges a fear that most fighters have but will not admit.\n\nHook 5: \"The difference between fighters who get sponsors and fighters who do not has nothing to do with their record.\"\nWhy it works: Immediately challenges what most fighters believe and makes them want to know the real answer.\n\n---\n\nSECTION 4: KING MAKER SOCIETY RECRUITMENT CONTENT IDEA\n\nFormat: Reel\nHook: \"If you are a martial artist trying to build your name and you are doing it alone — this is for you.\"\nContent: Be direct. Speak to the isolation of trying to build a brand without a team, a system, or people who understand what you are building. Then make the contrast clear — what it looks like when you have a brotherhood around you doing the same thing.\nCTA: \"King Maker Society is the online brotherhood for martial artists building something serious. @kingmakersocial. Link in bio.\"\n\n---\n\nSECTION 5: WEEKLY CONTENT CHALLENGE\n\nChallenge: Post something this week that you have been sitting on.\n\nYou know the clip. You know the caption idea. You know the thing you have been overthinking for days. Post it this week. Do not edit it to death. Do not wait for the perfect moment.\n\nPost it. Tag @kingmakersocial. We will repost the one that took the most guts to put up.", "date": "June 5, 2026"}
-</script>
+<!-- ═══════════════════════════════════════════════
+     ANIMATED CANVAS BACKGROUND
+════════════════════════════════════════════════ -->
+<canvas id="kms-canvas"></canvas>
 
-<script type="application/json" id="kms-captions-data">
-{"content": "SECTION 1: 3 READY-TO-POST CAPTIONS\n\nCaption A: Real Talk\n\nI have watched fighters with average skills build massive platforms.\nAnd I have watched elite competitors with zero online presence get passed over for opportunities they deserved.\nThe fight game has changed.\nYour skill gets you in the gym.\nYour brand gets you in the room.\nStart building both.\nFollow for content built for martial artists who are serious about what they are creating.\n\nCaption B: Mindset\n\nYou do not need motivation to train.\nYou need a decision.\nMotivation is unreliable. It shows up when things are going well and disappears exactly when you need it most.\nMake the decision once.\nGet up. Train. Post the work. Repeat.\nThat is the system. Everything else is just noise.\nSave this for the next time you are waiting to feel ready.\n\nCaption C: Brotherhood\n\nThe people around you are either pushing you forward or keeping you comfortable.\nComfortable is the enemy of growth.\nFind people who train harder than you, post more than you, and hold higher standards than you.\nThen match them.\nThat is what King Maker Society is built on.\nIf you want to be around that energy, come find us. @kingmakersocial\n\n---\n\nSECTION 2: HOOK FORMULA: THE CONTRAST HOOK\n\nHow it works:\nYou set up two opposing realities — what most people do versus what actually works. The gap between those two things is where the tension lives. That tension stops the scroll.\n\nExample Hooks:\n1. \"Most fighters train hard. Very few of them build careers. Here is the difference.\"\n2. \"Everyone talks about discipline. Almost nobody talks about what discipline actually looks like at 5am when you do not want to get up.\"\n3. \"The fighters getting sponsored are not always the most skilled. They are the most visible. Here is how that changes your strategy.\"\n\nUse this formula when you want to challenge a belief, correct a misconception, or reframe how your audience sees something they think they already understand.\n\n---\n\nSECTION 3: 5 CAPTION STARTERS\n\n1. \"Every fighter has a story. Most of them never tell it. That is the gap.\"\n2. \"You are not behind. You just have not started building yet.\"\n3. \"The fight you have in the gym every day is the most marketable thing about you. Start showing it.\"\n4. \"Sponsors do not find fighters with skill. They find fighters with audiences. Build yours.\"\n5. \"The version of you that does not second-guess every post is the version that builds something real.\"\n\n---\n\nSECTION 4: STORY PROMPT FOR TODAY\n\nPoll: \"What is your biggest block right now?\"\nOption A: Not enough time to create content\nOption B: Not knowing what to post\n\nFollow-up: DM everyone who answers Option B with one specific idea for their martial art and niche. That is your warmest outreach of the week.\n\n---\n\nSECTION 5: QUICK WRITING TIP\n\nWrite to one person, not an audience.\n\nWhen you sit down to write a caption, stop thinking about your followers as a group. Think about one specific person — a fighter at your gym, a training partner, someone in your corner. Write directly to them.\n\nThe paradox of content is that the more specific and personal you write, the more people feel like you wrote it for them. Broad captions get scrolled past. Personal ones get saved.", "date": "June 5, 2026"}
-</script>
-
-<script type="application/json" id="kms-strategy-data">
-{"content": "SECTION 1: STRATEGY LESSON — BUILD YOUR CONTENT AROUND YOUR TRAINING, NOT AROUND YOUR SCHEDULE\n\nWhy this matters:\nMost martial artists approach content creation as something separate from training. They train, then they try to think of content ideas. This is backwards. Your training is the content. The mistake is not capturing it.\n\nThe system:\n\nStep 1 — The One-Clip Rule\nEvery training session, your only job is to capture one clip. One round. One drill. One moment. You do not need a full camera setup. Your phone propped against a bag works. One clip per session means 5 to 7 pieces of raw content per week without any extra effort.\n\nStep 2 — The Nightly Review\nEvery night before bed, spend 3 minutes scrolling through what you captured that day. Pick the best 10 seconds. That is tomorrow's post. Do not overthink it. Do not over-edit it. The clip you think is average is usually the one that performs.\n\nStep 3 — The Caption First Approach\nWrite the caption before you edit the clip. Ask yourself: what is the one thing I learned, felt, or realized at training today? Write that first. Then find the clip that matches. This reverses the usual process and almost always produces more authentic content.\n\nStep 4 — The 24-Hour Rule\nPost within 24 hours of capturing the clip. The longer you wait, the more you second-guess it. Fresh content from today always feels more real than content you have been sitting on for a week.\n\n---\n\nSECTION 2: PLATFORM TIP OF THE WEEK\n\nWhat is working right now on Instagram Reels: Text overlays that appear in the first 2 seconds are significantly extending watch time. Add one line of text at the very start of your reel — not a full caption, just a short phrase that tells the viewer what they are about to see. This is functioning as a visual hook that keeps people watching past the three-second mark, which is where most videos lose their audience.\n\nTest this week: Pick one clip and add a simple 3-word text overlay in the first frame. Compare the watch time to your last post without one.\n\n---\n\nSECTION 3: WEEKEND CHALLENGE — THE RAW POST CHALLENGE\n\nChallenge Name: Post It Raw\n\nWhat to do: Film something at training this weekend with zero intention of it being \"content.\" Just hit record. Then post it with a one-line caption. No heavy edits. No filters. No over-thinking. Just the work.\n\nWhy this builds your brand: The most authentic posts in the martial arts niche are consistently the least produced. One phone camera, one raw moment, one honest line. That is the formula that builds real connection with an audience.\n\nTag @kingmakersocial on the post. We will repost the realest one from the weekend.\n\n---\n\nSECTION 4: PERSONAL BRAND CHECK-IN QUESTIONS\n\n1. If someone followed you six months ago, have they seen your improvement — or have they just seen the same version of you on repeat?\n\n2. Are you showing the process or just the results? Most audiences connect with the process. The results are just the payoff.\n\n3. What is the one story from your martial arts journey you have never told publicly — and is that actually the story that would build your audience the fastest?\n\n---\n\nSECTION 5: TEAM SHOUTOUT TEMPLATE\n\n\"Shoutout to [MEMBER NAME] this week. The consistency has been real. That is exactly what King's Media is built on — showing up, putting the work on camera, and building something that matters. Keep going. The page grows because you grow.\"", "date": "June 5, 2026"}
-</script>
-
-<!-- ── ENTRY SCREEN ── -->
+<!-- ═══════════════════════════════════════════════
+     ENTRY SCREEN
+════════════════════════════════════════════════ -->
 <div id="entryScreen">
-
-  <div class="entry-logo">
-    <img src="https://raw.githubusercontent.com/kingmakersocialwork-netizen/kings-media-portal/main/logo.png.png" alt="King Maker Society" width="160" style="display:block;filter:drop-shadow(0 0 18px rgba(184,145,42,0.5));">
-  </div>
-
-  <div class="entry-heading">King's Media</div>
+  <img src="https://raw.githubusercontent.com/kingmakersocialwork-netizen/kings-media-portal/main/logo.png.png"
+       alt="King Maker Society" class="entry-logo" />
+  <div class="entry-brand">King's Media</div>
   <div class="entry-sub">King Maker Society</div>
   <div class="entry-desc">Content Team Portal</div>
 
@@ -441,244 +471,298 @@
     <div class="entry-card-sub">Enter your email to unlock the weekly brief, captions, hooks, strategies, and more.</div>
 
     <label class="field-label" for="nameInput">Your name</label>
-    <input class="field-input" id="nameInput" type="text" placeholder="First name" autocomplete="given-name"/>
+    <input id="nameInput" class="field-input" type="text" placeholder="First name" autocomplete="given-name" />
 
     <label class="field-label" for="emailInput">Email address</label>
-    <input class="field-input" id="emailInput" type="email" placeholder="you@email.com" autocomplete="email"/>
+    <input id="emailInput" class="field-input" type="email" placeholder="you@email.com" autocomplete="email" />
 
-    <div class="entry-error" id="entryError">Please enter a valid email address.</div>
+    <div id="entryError" class="entry-error">Please enter a valid email address.</div>
 
-    <button class="entry-btn" id="entryBtn" onclick="submitEntry()">Access Portal</button>
-
-    <div class="entry-legal">By entering your email you agree to receive updates from King Maker Society. No spam. Ever.</div>
+    <button id="entryBtn" class="entry-btn">Access Portal</button>
+    <div class="entry-tos">By entering your email you agree to receive updates from King Maker Society. No spam. Ever.</div>
   </div>
 </div>
 
-<!-- ── PORTAL ── -->
+<!-- ═══════════════════════════════════════════════
+     DATA (weekly content — update these each week)
+════════════════════════════════════════════════ -->
+<script id="kms-brief-data" type="application/json">
+{"content": "SECTION 1: WEEKLY CONTENT THEME\n\nTheme: Visibility Over Perfection\n\nThe biggest thing holding most martial artists back from building a real brand is waiting until everything is perfect. The lighting is not right. The clip is not clean enough. The caption needs more work. Meanwhile, other fighters with half your skill are posting every day and building audiences you can only watch from the sidelines.\n\nThis week the content focuses on one thing: showing up and being seen. Raw is real. Consistent beats polished every single time.\n\n---\n\nSECTION 2: 5 CONTENT IDEAS FOR THE WEEK\n\nIdea 1\nFormat: Reel\nTopic: \"I almost did not post this\"\nHook: \"Almost deleted this. Posted it anyway. Here is why.\"\nWhy it works: The self-aware post performs extremely well because it breaks the fourth wall. You are not pretending to be a content machine. You are being honest about the resistance — and your audience will respect you for it.\nCTA: Follow for the real side of martial arts.\n\nIdea 2\nFormat: TikTok\nTopic: One technique. Zero explaining.\nHook: Start the video mid-rep. No intro. No caption explanation. Let the work speak.\nWhy it works: Raw, unedited training content is outperforming heavily produced clips right now. The algorithm wants watch time. Authenticity keeps people watching.\nCTA: This is the work. Follow for more of the real thing.\n\nIdea 3\nFormat: Single Post\nTopic: \"One line that changed how I train\"\nHook: One powerful sentence. Dark background. Bold white text. No elaboration needed.\nWhy it works: One-line posts that stop the scroll drive shares from fighters who feel it instantly. Keep it short. Make it hit hard.\nCTA: Send this to someone who needs to hear it.\n\nIdea 4\nFormat: YouTube Short or TikTok\nTopic: \"Why I started posting my training even when I did not feel ready\"\nHook: \"I was embarrassed to post. Then I realized nobody cares about your ego. They care about your journey.\"\nWhy it works: Vulnerability from a real martial artist hits differently than motivational content from someone who has never trained.\nCTA: Drop your discipline score in the comments. 1 is just starting. 10 is no days missed.\n\nIdea 5\nFormat: Carousel (Instagram)\nTopic: The 5-minute morning routine that changed how I train\nHook: Slide 1 — \"5 minutes in the morning. Changed everything.\"\nWhy it works: Carousel posts have strong save rates. Morning routines are evergreen content that work across all martial arts audiences.\nCTA: Save this and try it tomorrow morning."}
+</script>
+
+<script id="kms-captions-data" type="application/json">
+{"content": "SECTION 1: 3 READY-TO-POST CAPTIONS\n\nCaption A: Real Talk\n\nI have watched fighters with average skills build massive platforms.\nAnd I have watched elite competitors with zero online presence get passed over for opportunities they deserved.\nThe fight game has changed.\nYour skill gets you in the gym.\nYour brand gets you in the room.\nStart building both.\nFollow for content built for martial artists who are serious about what they are creating.\n\nCaption B: Mindset\n\nYou do not need motivation to train.\nYou need a decision.\nMotivation is unreliable. It shows up when things are going well and disappears exactly when you need it most.\nMake the decision once.\nGet up. Train. Post the work. Repeat.\nThat is the system. Everything else is just noise.\nSave this for the next time you are waiting to feel ready.\n\nCaption C: Brotherhood\n\nThe people around you are either pushing you forward or keeping you comfortable.\nComfortable is the enemy of growth.\nFind people who make you uncomfortable in the best way.\nPeople who train harder than you.\nThink bigger than you.\nPost more consistently than you.\nThat environment is the edge.\nWe built one. DM KING if you want in.\n\n---\n\nSECTION 2: HOOK LINES (for video overlays or opening lines)\n\nHook 1: Nobody is coming to save your career. You have to build it.\nHook 2: Most fighters train alone. The ones who win have a team.\nHook 3: Discipline is not a feeling. It is a decision you make before the alarm goes off.\nHook 4: Your training footage is more valuable than you think. Start capturing it.\nHook 5: The mat teaches you things a classroom never could.\nHook 6: Stop waiting for the right moment. The right moment is training.\nHook 7: If you are not posting your journey, someone less skilled is getting the opportunity you deserve.\n\n---\n\nSECTION 3: CALL TO ACTION OPTIONS\n\nFor community growth: Comment KING below and I will send you the details.\nFor engagement: Drop a 1-10 on your training consistency this week.\nFor saves: Save this before you forget it.\nFor follows: Follow if you are a martial artist who takes the mental side seriously.\nFor DMs: DM me the word PORTAL and I will send you this week's full content breakdown."}
+</script>
+
+<script id="kms-strategy-data" type="application/json">
+{"content": "SECTION 1: STRATEGY LESSON — BUILD YOUR CONTENT AROUND YOUR TRAINING, NOT AROUND YOUR SCHEDULE\n\nWhy this matters:\nMost martial artists approach content creation as something separate from training. They train, then they try to think of content ideas. This is backwards. Your training is the content. The mistake is not capturing it.\n\nThe system:\n\nStep 1 — The One-Clip Rule\nEvery training session, your only job is to capture one clip. One round. One drill. One moment. You do not need a full camera setup. Your phone propped against a bag works. One clip per session means 5 to 7 pieces of raw content per week without any extra effort.\n\nStep 2 — The Nightly Review\nEvery night before bed, spend 3 minutes scrolling through what you captured that day. Pick the best 10 seconds. That is tomorrow's post. Do not overthink it. Do not over-edit it. The clip you think is average is usually the one that performs.\n\nStep 3 — The Caption First Approach\nWrite the caption before you edit the video. Not after. Most creators do this backwards and waste 20 minutes trying to write a caption for footage they are not even connected to anymore. Write it while the moment is fresh.\n\nStep 4 — The Batch Day\nOnce a week, pick one day to turn your best clips into actual posts. Not every day. Just one day. Sunday works well. Batch everything for the week in 45 minutes and schedule it.\n\n---\n\nSECTION 2: THIS WEEK'S CHALLENGE\n\nChallenge: The 5-Day Visibility Challenge\n\nDay 1 — Post one raw training clip. No music. No text overlay. Just the clip.\nDay 2 — Post one caption that is just one line. Make it hit hard.\nDay 3 — Post a technique breakdown. One move. 30 seconds max.\nDay 4 — Post something you would normally delete. The imperfect moment.\nDay 5 — Post a question to your audience. Ask them something real about their training.\n\nThe goal of this challenge is not to go viral. The goal is to break the hesitation pattern. You do it for 5 days and you will understand why consistent martial artists always outgrow the ones who are waiting for the perfect post."}
+</script>
+
+<script id="kms-fightiq-data" type="application/json">
+{"content": "FIGHT IQ BREAKDOWN — WEEK OF JUNE 5, 2026\n\nTopic: How to Read Your Opponent in the First 90 Seconds\n\nEvery fight tells you something before the real action starts. Most fighters miss it. The ones who win more than they lose have learned to read the first 90 seconds like a page from a book. Here is what to look for and what to do with what you see.\n\n---\n\nSECTION 1: THE FOUR THINGS YOU ARE LOOKING FOR IN THE FIRST 90 SECONDS\n\n1. Where They Put Their Weight\nWatch the feet. A fighter who loads onto their back foot is a counterpuncher — they want you to come forward. A fighter who sits centered or leans forward is a pressure fighter who wants to control distance. This tells you whether your job is to force them to lead or to make them chase.\n\n2. How They React to Your Jab\nThrow the jab early, not to hurt — to ask a question. Watch what happens. Do they roll under it? Do they step back? Do they parry high? Do they freeze? Their reaction to your first jab tells you more about their defensive habits than any amount of watching film.\n\n3. Where Their Eyes Go\nWhere a fighter looks before they attack is one of the most reliable tells in combat sports. Most fighters look at the target before they commit to it. Watch their eyes before they throw combinations. You will start to see the tell in the first 90 seconds and it will not change.\n\n4. How They Handle Pressure\nStep in and crowd them once early. Not to land — just to see how they react. Do they clinch immediately? Do they create distance with footwork? Do they freeze and cover up? This single test tells you whether pressure is your weapon for the whole fight.\n\n---\n\nSECTION 2: THE DOUBLE JAB CONCEPT\n\nThe double jab is one of the most underused tools for reading an opponent. Most fighters throw a jab and then wait for information. The double jab forces the opponent to deal with two problems instead of one and reveals more about their habits.\n\nThe window where their weight is committed and they cannot change direction.\n\nWhy it works:\nFighters react to the first jab and then momentarily relax their guard because the threat seems to have passed. The second jab arrives in that split second of relaxation.\n\nWhen to use it:\nUse this against fighters who have sharp defensive reactions and are difficult to hit with a telegraphed straight shot. The first jab makes them feel like they solved the problem. The second jab shows them they did not.\n\nDrills to develop this:\nHave your training partner stand in front of you and tell you their preferred parry before you throw. Practice timing the second jab to land during the parry, not after. Once you can do it knowing what is coming, start doing it without the verbal cue.\n\n---\n\nSECTION 3: RING INTELLIGENCE MOMENT — CONTROLLING THE CENTER\n\nThe center of the ring is not just a position. It is leverage.\n\nWhen you own the center, your opponent has less space behind them. Every time you push them toward the ropes you limit their options. Every time you allow yourself to be pushed to the ropes you give them leverage over the fight.\n\nThis week, in every sparring session, give yourself one simple rule: if you get pushed to the ropes, your only job for the next 10 seconds is to get back to center. Not to counter. Not to attack. Just to reset position. Do this consistently and you will notice that your footwork improves, your composure under pressure improves, and you stop making panicked decisions from a disadvantaged position."}
+</script>
+
+<!-- ═══════════════════════════════════════════════
+     PORTAL
+════════════════════════════════════════════════ -->
 <div id="portal">
 
+  <!-- Header -->
   <div class="ph">
     <div class="ph-left">
-      <img src="https://raw.githubusercontent.com/kingmakersocialwork-netizen/kings-media-portal/main/logo.png.png" alt="King Maker Society" height="48" style="display:block;filter:drop-shadow(0 0 10px rgba(184,145,42,0.5));">
+      <img src="https://raw.githubusercontent.com/kingmakersocialwork-netizen/kings-media-portal/main/logo.png.png"
+           alt="King Maker Society" class="ph-logo" />
       <div>
         <div class="ph-text-top">King's Media</div>
         <div class="ph-text-main">King Maker Society</div>
       </div>
+      <div class="ph-badge">Content Portal</div>
     </div>
-    <div class="ph-badge">Content Portal</div>
   </div>
 
-  <div class="pt">
-    <div class="ptab on" onclick="showTab('brief',this)">Weekly Brief</div>
-    <div class="ptab" onclick="showTab('captions',this)">Captions &amp; Hooks</div>
-    <div class="ptab" onclick="showTab('strategy',this)">Strategy &amp; Challenge</div>
-    <div class="ptab" onclick="showTab('fightiq',this)">Fight IQ</div>
+  <!-- Tabs -->
+  <div class="pt" id="portalTabs">
+    <div class="ptab on" data-tab="brief">Weekly Brief</div>
+    <div class="ptab" data-tab="captions">Captions &amp; Hooks</div>
+    <div class="ptab" data-tab="strategy">Strategy &amp; Challenge</div>
+    <div class="ptab" data-tab="fightiq">Fight IQ</div>
   </div>
 
-  <div class="pb">
+  <!-- Content -->
+  <div class="pc">
+    <div class="pc-inner">
 
-    <!-- Weekly Brief -->
-    <div class="pp on" id="pp-brief">
-      <div class="pp-head">
-        <div class="pp-title">Weekly Content Brief</div>
-        <div class="pp-date" id="dt-brief">—</div>
+      <!-- Weekly Brief -->
+      <div class="pp on" id="pp-brief">
+        <div class="pp-head">
+          <div class="pp-title">Weekly Content Brief</div>
+          <div class="pp-date" id="dt-brief">—</div>
+        </div>
+        <div class="pp-text" id="ct-brief"></div>
+        <div class="cs" id="cs-brief"></div>
       </div>
-      <div class="pp-text" id="ct-brief"></div>
-      <div id="cs-brief"></div>
-    </div>
 
-    <!-- Captions & Hooks -->
-    <div class="pp" id="pp-captions">
-      <div class="pp-head">
-        <div class="pp-title">Captions &amp; Hooks</div>
-        <div class="pp-date" id="dt-captions">—</div>
+      <!-- Captions & Hooks -->
+      <div class="pp" id="pp-captions">
+        <div class="pp-head">
+          <div class="pp-title">Captions &amp; Hooks</div>
+          <div class="pp-date" id="dt-captions">—</div>
+        </div>
+        <div class="pp-text" id="ct-captions"></div>
+        <div class="cs" id="cs-captions"></div>
       </div>
-      <div class="pp-text" id="ct-captions"></div>
-      <div id="cs-captions"></div>
-    </div>
 
-    <!-- Strategy & Challenge -->
-    <div class="pp" id="pp-strategy">
-      <div class="pp-head">
-        <div class="pp-title">Strategy &amp; Challenge</div>
-        <div class="pp-date" id="dt-strategy">—</div>
+      <!-- Strategy & Challenge -->
+      <div class="pp" id="pp-strategy">
+        <div class="pp-head">
+          <div class="pp-title">Strategy &amp; Challenge</div>
+          <div class="pp-date" id="dt-strategy">—</div>
+        </div>
+        <div class="pp-text" id="ct-strategy"></div>
+        <div class="cs" id="cs-strategy"></div>
       </div>
-      <div class="pp-text" id="ct-strategy"></div>
-      <div id="cs-strategy"></div>
-    </div>
 
-    <!-- Fight IQ -->
-    <div class="pp" id="pp-fightiq">
-      <div class="pp-head">
-        <div class="pp-title">Fight IQ Breakdowns</div>
-        <div class="pp-date" id="dt-fightiq">—</div>
+      <!-- Fight IQ -->
+      <div class="pp" id="pp-fightiq">
+        <div class="pp-head">
+          <div class="pp-title">Fight IQ Breakdowns</div>
+          <div class="pp-date" id="dt-fightiq">—</div>
+        </div>
+        <div class="pp-text" id="ct-fightiq"></div>
+        <div class="cs" id="cs-fightiq"></div>
       </div>
-      <div class="pp-text" id="ct-fightiq"></div>
-      <div id="cs-fightiq"></div>
-    </div>
 
+    </div>
   </div>
 
-  <button class="lock-pill" onclick="signOut()">Sign Out</button>
+  <!-- Sign out -->
+  <button class="lock-pill" id="lockBtn">Sign Out</button>
 </div>
 
+
+<!-- ═══════════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════════ -->
 <script>
-// ─────────────────────────────────────────────
-// COMING SOON ITEMS
-// ─────────────────────────────────────────────
-const comingSoon = [
-  {
-    icon: "💰",
-    title: "Sponsor Pitch Templates",
-    desc: "Done-for-you outreach scripts and pitch decks to land your first brand deal as a martial artist."
-  },
-  {
-    icon: "👑",
-    title: "Member Spotlight Kit",
-    desc: "Templates and frameworks to build your personal brand profile and get featured by King Maker Society."
-  },
-  {
-    icon: "📲",
-    title: "Outreach DM Scripts",
-    desc: "Proven message templates for connecting with gyms, brands, promoters, and other fighters."
-  },
-  {
-    icon: "📖",
-    title: "Personal Brand Playbook",
-    desc: "A step-by-step system for building a recognizable identity as a fighter both online and offline."
+(function () {
+  'use strict';
+
+  /* ─── ANIMATED BACKGROUND ─── */
+  const canvas = document.getElementById('kms-canvas');
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
   }
-];
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
 
-function buildComingSoon() {
-  const html = `
-    <div class="coming-soon-divider">
-      <div class="coming-soon-divider-line"></div>
-      <div class="coming-soon-divider-label">Coming Soon</div>
-      <div class="coming-soon-divider-line"></div>
-    </div>
-    <div class="cs-grid">
-      ${comingSoon.map(item => `
-        <div class="cs-card">
-          <div class="cs-badge">Coming Soon</div>
-          <div class="cs-title">${item.icon} ${item.title}</div>
-          <div class="cs-desc">${item.desc}</div>
-        </div>
-      `).join('')}
-    </div>
-  `;
-  document.querySelectorAll('[id^="cs-"]').forEach(el => el.innerHTML = html);
-}
+  /* Particles (rising embers) */
+  function Particle() { this.reset(true); }
+  Particle.prototype.reset = function (init) {
+    this.x = Math.random() * canvas.width;
+    this.y = init ? Math.random() * canvas.height : canvas.height + 8;
+    this.size = Math.random() * 2.2 + 0.4;
+    this.speedY = -(Math.random() * 0.55 + 0.18);
+    this.speedX = (Math.random() - 0.5) * 0.28;
+    this.opacity = 0;
+    this.maxOpacity = Math.random() * 0.5 + 0.08;
+    this.life = 0;
+    this.maxLife = Math.random() * 420 + 180;
+    this.gold = Math.random() > 0.35;
+    this.twinkle = Math.random() * Math.PI * 2;
+    this.twinkleSpeed = Math.random() * 0.02 + 0.005;
+  };
+  Particle.prototype.update = function () {
+    this.y += this.speedY;
+    this.x += this.speedX;
+    this.life++;
+    this.twinkle += this.twinkleSpeed;
+    const half = this.maxLife / 2;
+    const base = this.life < half
+      ? (this.life / half) * this.maxOpacity
+      : ((this.maxLife - this.life) / half) * this.maxOpacity;
+    this.opacity = base * (0.75 + 0.25 * Math.sin(this.twinkle));
+    if (this.life >= this.maxLife || this.y < -10) this.reset(false);
+  };
+  Particle.prototype.draw = function () {
+    if (this.opacity <= 0) return;
+    ctx.save();
+    ctx.globalAlpha = Math.max(0, this.opacity);
+    const r = this.gold ? '184,145,42' : '220,180,80';
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = 'rgba(' + r + ',0.8)';
+    ctx.fillStyle = 'rgba(' + r + ',1)';
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  };
 
-// ─────────────────────────────────────────────
-// EMAIL ENTRY
-// ─────────────────────────────────────────────
-function isValidEmail(e) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
-}
+  /* Slow glow orbs */
+  function Orb() {
+    this.x = Math.random() * window.innerWidth;
+    this.y = Math.random() * window.innerHeight;
+    this.r = Math.random() * 320 + 100;
+    this.vx = (Math.random() - 0.5) * 0.12;
+    this.vy = (Math.random() - 0.5) * 0.12;
+    this.opacity = Math.random() * 0.035 + 0.008;
+    this.hue = Math.random() > 0.6 ? '184,145,42' : '90,55,8';
+    this.pulse = Math.random() * Math.PI * 2;
+    this.pulseSpeed = Math.random() * 0.008 + 0.003;
+  }
+  Orb.prototype.update = function () {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.pulse += this.pulseSpeed;
+    const w = canvas.width, h = canvas.height;
+    if (this.x < -this.r) this.x = w + this.r;
+    if (this.x > w + this.r) this.x = -this.r;
+    if (this.y < -this.r) this.y = h + this.r;
+    if (this.y > h + this.r) this.y = -this.r;
+  };
+  Orb.prototype.draw = function () {
+    const op = this.opacity * (0.8 + 0.2 * Math.sin(this.pulse));
+    const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
+    g.addColorStop(0, 'rgba(' + this.hue + ',' + op + ')');
+    g.addColorStop(1, 'rgba(' + this.hue + ',0)');
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fill();
+  };
 
-async function submitEntry() {
-  const email = document.getElementById('emailInput').value.trim();
-  const name  = document.getElementById('nameInput').value.trim();
-  const errEl = document.getElementById('entryError');
-  const btn   = document.getElementById('entryBtn');
+  var particles = [];
+  var orbs = [];
+  for (var i = 0; i < 130; i++) particles.push(new Particle());
+  for (var j = 0; j < 6; j++) orbs.push(new Orb());
 
-  errEl.style.display = 'none';
+  function animateBg() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#080808';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    orbs.forEach(function (o) { o.update(); o.draw(); });
+    particles.forEach(function (p) { p.update(); p.draw(); });
+    requestAnimationFrame(animateBg);
+  }
+  animateBg();
 
-  if (!isValidEmail(email)) {
-    errEl.style.display = 'block';
-    return;
+  /* ─── PORTAL LOGIC ─── */
+  const sections = ['brief', 'captions', 'strategy', 'fightiq'];
+
+  function loadContent() {
+    sections.forEach(function (key) {
+      const el = document.getElementById('kms-' + key + '-data');
+      if (!el) return;
+      try {
+        const data = JSON.parse(el.textContent);
+        const ct = document.getElementById('ct-' + key);
+        const dt = document.getElementById('dt-' + key);
+        if (ct && data.content) ct.textContent = data.content;
+        if (dt && data.date) dt.textContent = data.date;
+      } catch (e) {}
+    });
   }
 
-  btn.disabled = true;
-  btn.innerHTML = '<div class="spinner"></div>';
+  function openPortal() {
+    document.getElementById('entryScreen').style.display = 'none';
+    document.getElementById('portal').classList.add('open');
+    loadContent();
+  }
 
-  try {
-    if (window.cowork && window.cowork.callMcpTool) {
-      await window.cowork.callMcpTool(
-        'mcp__c591453e-165b-4e54-96a2-d7e7de23c188__add_subscriber',
-        {
-          email: email,
-          name: name || undefined,
-          status: 'active',
-          fields: { source: "Kings Media Content Portal" }
-        }
-      );
+  function closePortal() {
+    document.getElementById('portal').classList.remove('open');
+    document.getElementById('entryScreen').style.display = 'flex';
+    document.getElementById('emailInput').value = '';
+    document.getElementById('nameInput').value = '';
+  }
+
+  function switchTab(name) {
+    sections.forEach(function (key) {
+      const pp = document.getElementById('pp-' + key);
+      const tab = document.querySelector('[data-tab="' + key + '"]');
+      if (key === name) {
+        pp && pp.classList.add('on');
+        tab && tab.classList.add('on');
+      } else {
+        pp && pp.classList.remove('on');
+        tab && tab.classList.remove('on');
+      }
+    });
+  }
+
+  /* Entry button */
+  document.getElementById('entryBtn').addEventListener('click', function () {
+    const email = document.getElementById('emailInput').value.trim();
+    const errEl = document.getElementById('entryError');
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errEl.classList.add('show');
+      return;
     }
-  } catch(e) {
-    console.warn('Subscriber add failed:', e);
-  }
+    errEl.classList.remove('show');
+    openPortal();
+  });
 
-  document.getElementById('entryCard').innerHTML = `
-    <div class="entry-success">
-      <div class="entry-success-icon">👑</div>
-      <div class="entry-success-title">Welcome to King's Media</div>
-      <div class="entry-success-sub">Loading your content...</div>
-    </div>
-  `;
+  /* Enter key */
+  document.getElementById('emailInput').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') document.getElementById('entryBtn').click();
+  });
+  document.getElementById('nameInput').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') document.getElementById('emailInput').focus();
+  });
 
-  setTimeout(() => openPortal(), 1200);
-}
+  /* Tabs */
+  document.getElementById('portalTabs').addEventListener('click', function (e) {
+    const tab = e.target.closest('[data-tab]');
+    if (tab) switchTab(tab.dataset.tab);
+  });
 
-function openPortal() {
-  document.getElementById('entryScreen').style.display = 'none';
-  document.getElementById('portal').classList.add('open');
-  renderContent();
-  buildComingSoon();
-}
+  /* Sign out */
+  document.getElementById('lockBtn').addEventListener('click', closePortal);
 
-function signOut() {
-  location.reload();
-}
-
-// ─────────────────────────────────────────────
-// TABS
-// ─────────────────────────────────────────────
-function showTab(name, el) {
-  document.querySelectorAll('.ptab').forEach(t => t.classList.remove('on'));
-  document.querySelectorAll('.pp').forEach(p => p.classList.remove('on'));
-  el.classList.add('on');
-  document.getElementById('pp-' + name).classList.add('on');
-}
-
-// ─────────────────────────────────────────────
-// CONTENT RENDER
-// ─────────────────────────────────────────────
-function readBlock(id) {
-  try { return JSON.parse(document.getElementById(id).textContent); }
-  catch(e) { return { content: null, date: null }; }
-}
-
-function renderContent() {
-  const brief    = readBlock('kms-brief-data');
-  const captions = readBlock('kms-captions-data');
-  const strategy = readBlock('kms-strategy-data');
-  const fightiq  = readBlock('kms-fightiq-data');
-
-  if (brief.content) {
-    document.getElementById('ct-brief').innerText = brief.content;
-    document.getElementById('dt-brief').innerText = 'Updated ' + brief.date;
-  } else {
-    document.getElementById('ct-brief').innerHTML = '<div class="pp-empty"><div class="pp-empty-icon">📋</div><div class="pp-empty-lbl">Waiting for Monday update</div></div>';
-  }
-  if (captions.content) {
-    document.getElementById('ct-captions').innerText = captions.content;
-    document.getElementById('dt-captions').innerText = 'Updated ' + captions.date;
-  } else {
-    document.getElementById('ct-captions').innerHTML = '<div class="pp-empty"><div class="pp-empty-icon">✍️</div><div class="pp-empty-lbl">Waiting for Wednesday update</div></div>';
-  }
-  if (strategy.content) {
-    document.getElementById('ct-strategy').innerText = strategy.content;
-    document.getElementById('dt-strategy').innerText = 'Updated ' + strategy.date;
-  } else {
-    document.getElementById('ct-strategy').innerHTML = '<div class="pp-empty"><div class="pp-empty-icon">🎯</div><div class="pp-empty-lbl">Waiting for Friday update</div></div>';
-  }
-  if (fightiq.content) {
-    document.getElementById('ct-fightiq').innerText = fightiq.content;
-    document.getElementById('dt-fightiq').innerText = 'Updated ' + fightiq.date;
-  } else {
-    document.getElementById('ct-fightiq').innerHTML = '<div class="pp-empty"><div class="pp-empty-icon">🧠</div><div class="pp-empty-lbl">Waiting for this week\'s breakdown</div></div>';
-  }
-}
+})();
 </script>
+
 </body>
 </html>
