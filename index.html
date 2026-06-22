@@ -88,6 +88,35 @@
       z-index: 1;
     }
 
+    /* ── ANIMATED CROWN BACKGROUND ── */
+    .crown-bg {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .crown-svg {
+      width: min(70vw, 600px);
+      height: auto;
+      opacity: 0;
+      animation: crownPulse 6s ease-in-out infinite, crownFadeIn 1.8s ease forwards;
+    }
+
+    @keyframes crownFadeIn {
+      0%   { opacity: 0; transform: scale(0.88); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes crownPulse {
+      0%, 100% { opacity: 0.55; transform: scale(1)    rotate(0deg); filter: drop-shadow(0 0 18px rgba(184,145,42,0.25)); }
+      30%       { opacity: 0.75; transform: scale(1.04) rotate(0.5deg); filter: drop-shadow(0 0 36px rgba(224,200,74,0.45)); }
+      60%       { opacity: 0.6;  transform: scale(0.98) rotate(-0.3deg); filter: drop-shadow(0 0 22px rgba(184,145,42,0.3)); }
+    }
+
     .entry-card {
       background: rgba(14,14,14,0.88);
       border: 1px solid #1e1e1e;
@@ -821,6 +850,38 @@
      ENTRY SCREEN
 ════════════════════════════════════════════════ -->
 <div id="entryScreen">
+
+  <!-- Animated crown background -->
+  <div class="crown-bg" aria-hidden="true">
+    <svg class="crown-svg" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="crownGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"   stop-color="#b8912a" stop-opacity="0.18"/>
+          <stop offset="50%"  stop-color="#e0c84a" stop-opacity="0.28"/>
+          <stop offset="100%" stop-color="#b8912a" stop-opacity="0.18"/>
+        </linearGradient>
+        <filter id="crownGlow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <!-- Crown base band -->
+      <rect x="20" y="110" width="160" height="28" rx="4" fill="url(#crownGrad)" stroke="#b8912a" stroke-width="1.2" stroke-opacity="0.5" filter="url(#crownGlow)"/>
+      <!-- Crown points -->
+      <polygon points="20,110 50,45 80,85 100,30 120,85 150,45 180,110" fill="url(#crownGrad)" stroke="#b8912a" stroke-width="1.5" stroke-opacity="0.6" stroke-linejoin="round" filter="url(#crownGlow)"/>
+      <!-- Gem dots -->
+      <circle cx="100" cy="30" r="5"  fill="#e0c84a" opacity="0.55" filter="url(#crownGlow)"/>
+      <circle cx="50"  cy="45" r="3.5" fill="#e0c84a" opacity="0.45" filter="url(#crownGlow)"/>
+      <circle cx="150" cy="45" r="3.5" fill="#e0c84a" opacity="0.45" filter="url(#crownGlow)"/>
+      <circle cx="20"  cy="110" r="4" fill="#e0c84a" opacity="0.4" filter="url(#crownGlow)"/>
+      <circle cx="180" cy="110" r="4" fill="#e0c84a" opacity="0.4" filter="url(#crownGlow)"/>
+      <!-- Band gems -->
+      <circle cx="60"  cy="124" r="3.5" fill="#e0c84a" opacity="0.5" filter="url(#crownGlow)"/>
+      <circle cx="100" cy="124" r="4.5" fill="#e0c84a" opacity="0.6" filter="url(#crownGlow)"/>
+      <circle cx="140" cy="124" r="3.5" fill="#e0c84a" opacity="0.5" filter="url(#crownGlow)"/>
+    </svg>
+  </div>
+
   <img src="https://raw.githubusercontent.com/kingmakersocialwork-netizen/kings-media-portal/main/logo.png.png"
        alt="King Maker Society" class="entry-logo" />
   <div class="entry-brand">King's Media</div>
@@ -883,11 +944,11 @@
 
   <!-- Tabs -->
   <div class="pt" id="portalTabs">
-    <div class="ptab on"  data-tab="brief">Weekly Brief</div>
+    <div class="ptab on"  data-tab="trends">📊 Trend Report</div>
+    <div class="ptab"     data-tab="brief">Weekly Brief</div>
     <div class="ptab"     data-tab="captions">Captions &amp; Hooks</div>
     <div class="ptab"     data-tab="strategy">Strategy &amp; Challenge</div>
     <div class="ptab"     data-tab="fightiq">Fight IQ</div>
-    <div class="ptab"     data-tab="trends">📊 Trend Report</div>
   </div>
 
   <!-- Content -->
@@ -895,7 +956,7 @@
     <div class="pc-inner">
 
       <!-- Weekly Brief -->
-      <div class="pp on" id="pp-brief">
+      <div class="pp" id="pp-brief">
         <div class="pp-head">
           <div class="pp-title">Weekly Content Brief</div>
           <div class="pp-date" id="dt-brief">—</div>
@@ -935,7 +996,7 @@
       </div>
 
       <!-- ═══ TREND REPORT TAB ═══ -->
-      <div class="pp" id="pp-trends">
+      <div class="pp on" id="pp-trends">
 
         <div class="pp-head">
           <div class="pp-title">Trend Report</div>
@@ -1647,7 +1708,7 @@
 
   /* ─── PORTAL LOGIC ─── */
   var dataSections = ['brief', 'captions', 'strategy', 'fightiq'];
-  var allTabs      = ['brief', 'captions', 'strategy', 'fightiq', 'trends'];
+  var allTabs      = ['trends', 'brief', 'captions', 'strategy', 'fightiq'];
 
   function loadContent() {
     dataSections.forEach(function (key) {
