@@ -102,7 +102,6 @@
       box-shadow: 0 0 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(184,145,42,0.06);
     }
 
-    /* Subtle gold top border glow on card */
     .entry-card::before {
       content: '';
       position: absolute;
@@ -447,13 +446,375 @@
       .entry-card { padding: 24px 18px; }
       .pc { padding: 24px 16px; }
     }
+
+    /* ════════════════════════════════════════
+       TREND REPORT TAB STYLES (tr- prefix)
+    ════════════════════════════════════════ */
+    #pp-trends .tr-header-badge {
+      display: inline-block;
+      background: #b8912a;
+      color: #000;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 2px;
+      margin-bottom: 10px;
+    }
+    #pp-trends .tr-intro {
+      font-size: 12px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    #pp-trends .tr-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    #pp-trends .tr-meta-pill {
+      background: rgba(184,145,42,0.08);
+      border: 1px solid rgba(184,145,42,0.2);
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 11px;
+      color: #b8912a;
+    }
+
+    /* Insights bar */
+    #pp-trends .tr-insights {
+      background: linear-gradient(135deg, #0e0c00, #1a1400);
+      border: 1px solid rgba(184,145,42,0.25);
+      border-radius: 10px;
+      padding: 22px 24px;
+      margin-bottom: 36px;
+    }
+    #pp-trends .tr-insights h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #b8912a;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    #pp-trends .tr-insights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+    }
+    #pp-trends .tr-insight-item {
+      background: rgba(0,0,0,0.35);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    #pp-trends .tr-insight-num {
+      font-size: 24px;
+      font-weight: 900;
+      color: #e0c84a;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    #pp-trends .tr-insight-label {
+      font-size: 10px;
+      color: #555;
+      line-height: 1.4;
+    }
+
+    /* Section headers */
+    #pp-trends .tr-section {
+      margin-bottom: 40px;
+    }
+    #pp-trends .tr-section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #1a1a1a;
+      flex-wrap: wrap;
+    }
+    #pp-trends .tr-platform-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #ccc;
+    }
+    #pp-trends .tr-ig-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      flex-shrink: 0;
+    }
+    #pp-trends .tr-tt-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #ff0050;
+      flex-shrink: 0;
+    }
+    #pp-trends .tr-section-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+    #pp-trends .tr-section-count {
+      margin-left: auto;
+      font-size: 10px;
+      color: #333;
+      background: #111;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    /* Platform banner */
+    #pp-trends .tr-platform-banner {
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    #pp-trends .tr-ig-banner {
+      background: rgba(240,148,51,0.05);
+      border: 1px solid rgba(240,148,51,0.15);
+    }
+    #pp-trends .tr-tt-banner {
+      background: rgba(255,0,80,0.04);
+      border: 1px solid rgba(255,0,80,0.15);
+    }
+    #pp-trends .tr-platform-banner .tr-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    #pp-trends .tr-platform-banner h4 { font-size: 12px; font-weight: 700; color: #ddd; margin-bottom: 3px; }
+    #pp-trends .tr-platform-banner p { font-size: 11px; color: #444; line-height: 1.5; }
+
+    /* Trend grid */
+    #pp-trends .tr-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    /* Trend card */
+    #pp-trends .tr-card {
+      background: #0f0f0f;
+      border: 1px solid #1a1a1a;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    #pp-trends .tr-card:hover { border-color: rgba(184,145,42,0.3); }
+
+    /* Thumbnail mock */
+    #pp-trends .tr-thumb {
+      width: 100%;
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #pp-trends .tr-thumb-bg { position: absolute; inset: 0; }
+    #pp-trends .tr-thumb-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 12px;
+      width: 100%;
+    }
+    #pp-trends .tr-views {
+      position: absolute;
+      bottom: 7px;
+      left: 8px;
+      background: rgba(0,0,0,0.75);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 3px;
+      z-index: 3;
+    }
+    #pp-trends .tr-views span { color: #e0c84a; }
+    #pp-trends .tr-creator {
+      position: absolute;
+      bottom: 7px;
+      right: 8px;
+      background: rgba(0,0,0,0.75);
+      color: #666;
+      font-size: 9px;
+      padding: 2px 7px;
+      border-radius: 3px;
+      z-index: 3;
+    }
+    #pp-trends .tr-ot {
+      font-size: 16px;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
+      line-height: 1.2;
+    }
+    #pp-trends .tr-ot-sm {
+      font-size: 12px;
+      color: #bbb;
+      font-style: italic;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
+      line-height: 1.4;
+    }
+
+    /* Card body */
+    #pp-trends .tr-card-body { padding: 14px 16px; }
+    #pp-trends .tr-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }
+    #pp-trends .tr-tag-fight   { background: rgba(220,40,40,0.12); color: #ff6b6b; border: 1px solid rgba(220,40,40,0.25); }
+    #pp-trends .tr-tag-life    { background: rgba(100,180,100,0.1); color: #7dca7d; border: 1px solid rgba(100,180,100,0.2); }
+    #pp-trends .tr-tag-edu     { background: rgba(80,140,220,0.1);  color: #7eb8f7; border: 1px solid rgba(80,140,220,0.2); }
+    #pp-trends .tr-tag-humor   { background: rgba(230,180,40,0.1);  color: #f0d060; border: 1px solid rgba(230,180,40,0.2); }
+    #pp-trends .tr-tag-drama   { background: rgba(180,80,220,0.1);  color: #d07ef0; border: 1px solid rgba(180,80,220,0.2); }
+    #pp-trends .tr-tag-motive  { background: rgba(184,145,42,0.12); color: #e0c84a; border: 1px solid rgba(184,145,42,0.25); }
+    #pp-trends .tr-tag-bts     { background: rgba(40,180,180,0.1);  color: #60e0e0; border: 1px solid rgba(40,180,180,0.2); }
+
+    #pp-trends .tr-card-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #e8e8e8;
+      margin-bottom: 5px;
+    }
+    #pp-trends .tr-caption {
+      font-size: 11px;
+      color: #444;
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+    #pp-trends .tr-why {
+      background: rgba(184,145,42,0.05);
+      border-left: 2px solid #b8912a;
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      border-radius: 0 5px 5px 0;
+    }
+    #pp-trends .tr-why .lbl {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #b8912a;
+      margin-bottom: 3px;
+    }
+    #pp-trends .tr-why p { font-size: 11px; color: #888; line-height: 1.5; }
+    #pp-trends .tr-apply {
+      background: #111;
+      border-radius: 5px;
+      padding: 8px 12px;
+    }
+    #pp-trends .tr-apply .lbl {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #7eb8f7;
+      margin-bottom: 3px;
+    }
+    #pp-trends .tr-apply p { font-size: 11px; color: #777; line-height: 1.5; }
+
+    /* Format table */
+    #pp-trends .tr-table-wrap {
+      overflow-x: auto;
+      margin-bottom: 32px;
+      border-radius: 8px;
+      border: 1px solid #1a1a1a;
+    }
+    #pp-trends table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      min-width: 560px;
+    }
+    #pp-trends th {
+      background: #111;
+      color: #b8912a;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #222;
+    }
+    #pp-trends td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #141414;
+      color: #777;
+      vertical-align: top;
+    }
+    #pp-trends tr:last-child td { border-bottom: none; }
+    #pp-trends tr:hover td { background: rgba(255,255,255,0.015); }
+    #pp-trends .tr-score { display: flex; align-items: center; gap: 6px; }
+    #pp-trends .tr-bar {
+      height: 4px; border-radius: 2px;
+    }
+    #pp-trends .tr-bar-hi  { background: #4CAF50; width: 88%; }
+    #pp-trends .tr-bar-med { background: #b8912a; width: 60%; }
+    #pp-trends .tr-bar-lo  { background: #333; width: 32%; }
+
+    /* Action plan */
+    #pp-trends .tr-action-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    #pp-trends .tr-action-card {
+      background: #0f0f0f;
+      border: 1px solid #1a1a1a;
+      border-radius: 8px;
+      padding: 18px;
+    }
+    #pp-trends .tr-action-num {
+      width: 26px; height: 26px;
+      background: #b8912a;
+      color: #000;
+      font-weight: 900;
+      font-size: 13px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 10px;
+      flex-shrink: 0;
+    }
+    #pp-trends .tr-action-card h4 { font-size: 12px; font-weight: 700; color: #ccc; margin-bottom: 6px; }
+    #pp-trends .tr-action-card p  { font-size: 11px; color: #555; line-height: 1.6; }
+    #pp-trends .tr-action-card ul { padding-left: 16px; margin-top: 6px; }
+    #pp-trends .tr-action-card li { font-size: 11px; color: #555; margin-bottom: 3px; }
+
+    #pp-trends .tr-divider {
+      border: none;
+      border-top: 1px solid #141414;
+      margin: 32px 0;
+    }
+    #pp-trends .tr-footer-note {
+      font-size: 10px;
+      color: #2a2a2a;
+      text-align: center;
+      padding-bottom: 20px;
+      letter-spacing: 0.5px;
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════
-     ANIMATED CANVAS BACKGROUND
-════════════════════════════════════════════════ -->
 <canvas id="kms-canvas"></canvas>
 
 <!-- ═══════════════════════════════════════════════
@@ -468,7 +829,7 @@
 
   <div class="entry-card" id="entryCard">
     <div class="entry-card-title">Access this week's content</div>
-    <div class="entry-card-sub">Enter your email to unlock the weekly brief, captions, hooks, strategies, and more.</div>
+    <div class="entry-card-sub">Enter your email to unlock the weekly brief, captions, hooks, strategies, trend reports, and more.</div>
 
     <label class="field-label" for="nameInput">Your name</label>
     <input id="nameInput" class="field-input" type="text" placeholder="First name" autocomplete="given-name" />
@@ -484,7 +845,7 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════
-     DATA (weekly content — update these each week)
+     DATA SCRIPTS
 ════════════════════════════════════════════════ -->
 <script id="kms-brief-data" type="application/json">
 {"content": "SECTION 1: WEEKLY CONTENT THEME\n\nTheme: Visibility Over Perfection\n\nThe biggest thing holding most martial artists back from building a real brand is waiting until everything is perfect. The lighting is not right. The clip is not clean enough. The caption needs more work. Meanwhile, other fighters with half your skill are posting every day and building audiences you can only watch from the sidelines.\n\nThis week the content focuses on one thing: showing up and being seen. Raw is real. Consistent beats polished every single time.\n\n---\n\nSECTION 2: 5 CONTENT IDEAS FOR THE WEEK\n\nIdea 1\nFormat: Reel\nTopic: \"I almost did not post this\"\nHook: \"Almost deleted this. Posted it anyway. Here is why.\"\nWhy it works: The self-aware post performs extremely well because it breaks the fourth wall. You are not pretending to be a content machine. You are being honest about the resistance — and your audience will respect you for it.\nCTA: Follow for the real side of martial arts.\n\nIdea 2\nFormat: TikTok\nTopic: One technique. Zero explaining.\nHook: Start the video mid-rep. No intro. No caption explanation. Let the work speak.\nWhy it works: Raw, unedited training content is outperforming heavily produced clips right now. The algorithm wants watch time. Authenticity keeps people watching.\nCTA: This is the work. Follow for more of the real thing.\n\nIdea 3\nFormat: Single Post\nTopic: \"One line that changed how I train\"\nHook: One powerful sentence. Dark background. Bold white text. No elaboration needed.\nWhy it works: One-line posts that stop the scroll drive shares from fighters who feel it instantly. Keep it short. Make it hit hard.\nCTA: Send this to someone who needs to hear it.\n\nIdea 4\nFormat: YouTube Short or TikTok\nTopic: \"Why I started posting my training even when I did not feel ready\"\nHook: \"I was embarrassed to post. Then I realized nobody cares about your ego. They care about your journey.\"\nWhy it works: Vulnerability from a real martial artist hits differently than motivational content from someone who has never trained.\nCTA: Drop your discipline score in the comments. 1 is just starting. 10 is no days missed.\n\nIdea 5\nFormat: Carousel (Instagram)\nTopic: The 5-minute morning routine that changed how I train\nHook: Slide 1 — \"5 minutes in the morning. Changed everything.\"\nWhy it works: Carousel posts have strong save rates. Morning routines are evergreen content that work across all martial arts audiences.\nCTA: Save this and try it tomorrow morning."}
@@ -499,7 +860,7 @@
 </script>
 
 <script id="kms-fightiq-data" type="application/json">
-{"content": "FIGHT IQ BREAKDOWN — WEEK OF JUNE 5, 2026\n\nTopic: How to Read Your Opponent in the First 90 Seconds\n\nEvery fight tells you something before the real action starts. Most fighters miss it. The ones who win more than they lose have learned to read the first 90 seconds like a page from a book. Here is what to look for and what to do with what you see.\n\n---\n\nSECTION 1: THE FOUR THINGS YOU ARE LOOKING FOR IN THE FIRST 90 SECONDS\n\n1. Where They Put Their Weight\nWatch the feet. A fighter who loads onto their back foot is a counterpuncher — they want you to come forward. A fighter who sits centered or leans forward is a pressure fighter who wants to control distance. This tells you whether your job is to force them to lead or to make them chase.\n\n2. How They React to Your Jab\nThrow the jab early, not to hurt — to ask a question. Watch what happens. Do they roll under it? Do they step back? Do they parry high? Do they freeze? Their reaction to your first jab tells you more about their defensive habits than any amount of watching film.\n\n3. Where Their Eyes Go\nWhere a fighter looks before they attack is one of the most reliable tells in combat sports. Most fighters look at the target before they commit to it. Watch their eyes before they throw combinations. You will start to see the tell in the first 90 seconds and it will not change.\n\n4. How They Handle Pressure\nStep in and crowd them once early. Not to land — just to see how they react. Do they clinch immediately? Do they create distance with footwork? Do they freeze and cover up? This single test tells you whether pressure is your weapon for the whole fight.\n\n---\n\nSECTION 2: THE DOUBLE JAB CONCEPT\n\nThe double jab is one of the most underused tools for reading an opponent. Most fighters throw a jab and then wait for information. The double jab forces the opponent to deal with two problems instead of one and reveals more about their habits.\n\nThe window where their weight is committed and they cannot change direction.\n\nWhy it works:\nFighters react to the first jab and then momentarily relax their guard because the threat seems to have passed. The second jab arrives in that split second of relaxation.\n\nWhen to use it:\nUse this against fighters who have sharp defensive reactions and are difficult to hit with a telegraphed straight shot. The first jab makes them feel like they solved the problem. The second jab shows them they did not.\n\nDrills to develop this:\nHave your training partner stand in front of you and tell you their preferred parry before you throw. Practice timing the second jab to land during the parry, not after. Once you can do it knowing what is coming, start doing it without the verbal cue.\n\n---\n\nSECTION 3: RING INTELLIGENCE MOMENT — CONTROLLING THE CENTER\n\nThe center of the ring is not just a position. It is leverage.\n\nWhen you own the center, your opponent has less space behind them. Every time you push them toward the ropes you limit their options. Every time you allow yourself to be pushed to the ropes you give them leverage over the fight.\n\nThis week, in every sparring session, give yourself one simple rule: if you get pushed to the ropes, your only job for the next 10 seconds is to get back to center. Not to counter. Not to attack. Just to reset position. Do this consistently and you will notice that your footwork improves, your composure under pressure improves, and you stop making panicked decisions from a disadvantaged position."}
+{"content": "FIGHT IQ BREAKDOWN — WEEK OF JUNE 5, 2026\n\nTopic: How to Read Your Opponent in the First 90 Seconds\n\nEvery fight tells you something before the real action starts. Most fighters miss it. The ones who win more than they lose have learned to read the first 90 seconds like a page from a book. Here is what to look for and what to do with what you see.\n\n---\n\nSECTION 1: THE FOUR THINGS YOU ARE LOOKING FOR IN THE FIRST 90 SECONDS\n\n1. Where They Put Their Weight\nWatch the feet. A fighter who loads onto their back foot is a counterpuncher — they want you to come forward. A fighter who sits centered or leans forward is a pressure fighter who wants to control distance. This tells you whether your job is to force them to lead or to make them chase.\n\n2. How They React to Your Jab\nThrow the jab early, not to hurt — to ask a question. Watch what happens. Do they roll under it? Do they step back? Do they parry high? Do they freeze? Their reaction to your first jab tells you more about their defensive habits than any amount of watching film.\n\n3. Where Their Eyes Go\nWhere a fighter looks before they attack is one of the most reliable tells in combat sports. Most fighters look at the target before they commit to it. Watch their eyes before they throw combinations. You will start to see the tell in the first 90 seconds and it will not change.\n\n4. How They Handle Pressure\nStep in and crowd them once early. Not to land — just to see how they react. Do they clinch immediately? Do they create distance with footwork? Do they freeze and cover up? This single test tells you whether pressure is your weapon for the whole fight.\n\n---\n\nSECTION 2: THE DOUBLE JAB CONCEPT\n\nThe double jab is one of the most underused tools for reading an opponent. Most fighters throw a jab and then wait for information. The double jab forces the opponent to deal with two problems instead of one and reveals more about their habits.\n\nWhy it works:\nFighters react to the first jab and then momentarily relax their guard because the threat seems to have passed. The second jab arrives in that split second of relaxation.\n\nWhen to use it:\nUse this against fighters who have sharp defensive reactions and are difficult to hit with a telegraphed straight shot. The first jab makes them feel like they solved the problem. The second jab shows them they did not.\n\n---\n\nSECTION 3: RING INTELLIGENCE MOMENT — CONTROLLING THE CENTER\n\nThe center of the ring is not just a position. It is leverage.\n\nWhen you own the center, your opponent has less space behind them. Every time you push them toward the ropes you limit their options. Every time you allow yourself to be pushed to the ropes you give them leverage over the fight.\n\nThis week, in every sparring session, give yourself one simple rule: if you get pushed to the ropes, your only job for the next 10 seconds is to get back to center. Not to counter. Not to attack. Just to reset position."}
 </script>
 
 <!-- ═══════════════════════════════════════════════
@@ -522,10 +883,11 @@
 
   <!-- Tabs -->
   <div class="pt" id="portalTabs">
-    <div class="ptab on" data-tab="brief">Weekly Brief</div>
-    <div class="ptab" data-tab="captions">Captions &amp; Hooks</div>
-    <div class="ptab" data-tab="strategy">Strategy &amp; Challenge</div>
-    <div class="ptab" data-tab="fightiq">Fight IQ</div>
+    <div class="ptab on"  data-tab="brief">Weekly Brief</div>
+    <div class="ptab"     data-tab="captions">Captions &amp; Hooks</div>
+    <div class="ptab"     data-tab="strategy">Strategy &amp; Challenge</div>
+    <div class="ptab"     data-tab="fightiq">Fight IQ</div>
+    <div class="ptab"     data-tab="trends">📊 Trend Report</div>
   </div>
 
   <!-- Content -->
@@ -572,10 +934,608 @@
         <div class="cs" id="cs-fightiq"></div>
       </div>
 
+      <!-- ═══ TREND REPORT TAB ═══ -->
+      <div class="pp" id="pp-trends">
+
+        <div class="pp-head">
+          <div class="pp-title">Trend Report</div>
+          <div class="pp-date">June 2026 · Live Captured</div>
+        </div>
+
+        <div class="tr-header-badge">King Maker Society — Internal</div>
+        <div class="tr-intro">Captured live from Instagram and TikTok. Real view counts, real formats, real accounts. Updated every Monday 12PM CST.</div>
+
+        <div class="tr-meta">
+          <div class="tr-meta-pill">📱 Instagram Reels</div>
+          <div class="tr-meta-pill">🎵 TikTok #mma — 8M Posts</div>
+          <div class="tr-meta-pill">👁 Views: 300K–11.9M per reel</div>
+          <div class="tr-meta-pill">🎯 @ufc · @alexvolkanovski · @stylebender</div>
+        </div>
+
+        <!-- Key Insights -->
+        <div class="tr-insights">
+          <h3>⚡ What The Data Is Telling Us</h3>
+          <div class="tr-insights-grid">
+            <div class="tr-insight-item">
+              <div class="tr-insight-num">11.9M</div>
+              <div class="tr-insight-label">Staredown/confrontation clip — highest single reel observed</div>
+            </div>
+            <div class="tr-insight-item">
+              <div class="tr-insight-num">3.2M</div>
+              <div class="tr-insight-label">Cinematic solo fighter pose with dramatic lighting</div>
+            </div>
+            <div class="tr-insight-item">
+              <div class="tr-insight-num">2.4M</div>
+              <div class="tr-insight-label">Adesanya BTS/candid moment — highest personal brand content</div>
+            </div>
+            <div class="tr-insight-item">
+              <div class="tr-insight-num">8M+</div>
+              <div class="tr-insight-label">Total posts under #mma on TikTok alone</div>
+            </div>
+            <div class="tr-insight-item">
+              <div class="tr-insight-num">#1</div>
+              <div class="tr-insight-label">Format: Confrontation / tension / drama — most viral across both platforms</div>
+            </div>
+            <div class="tr-insight-item">
+              <div class="tr-insight-num">6+</div>
+              <div class="tr-insight-label">Distinct content formats documented and broken down below</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── INSTAGRAM ORG ── -->
+        <div class="tr-section">
+          <div class="tr-section-header">
+            <div class="tr-platform-badge"><div class="tr-ig-dot"></div> Instagram</div>
+            <div class="tr-section-title">Org Accounts — UFC Reels (49.9M Followers)</div>
+            <div class="tr-section-count">6 Formats</div>
+          </div>
+          <div class="tr-platform-banner tr-ig-banner">
+            <div class="tr-icon">📸</div>
+            <div>
+              <h4>What org accounts show us</h4>
+              <p>Consistently 1M–3.2M views per reel. Study the thumbnails, text overlays, and emotional hooks — these are the formats that stop scrolling at scale.</p>
+            </div>
+          </div>
+          <div class="tr-grid">
+
+            <div class="tr-card">
+              <div class="tr-thumb">
+                <div class="tr-thumb-bg" style="background:linear-gradient(160deg,#1a0a0a,#3a1010,#0a0a0a);"></div>
+                <div class="tr-thumb-content">
+                  <div class="tr-ot" style="font-size:14px;">POST-FIGHT REACTION</div>
+                  <div style="margin-top:8px;font-size:13px;color:#b8912a;font-style:italic;">"for the belt."</div>
+                </div>
+                <div class="tr-views">👁 <span>1.3M</span></div>
+                <div class="tr-creator">@ufc</div>
+              </div>
+              <div class="tr-card-body">
+                <div class="tr-tag tr-tag-fight">Fight Content</div>
+                <div class="tr-card-title">Post-Fight Reaction + Bold Caption</div>
+                <div class="tr-caption">"for the belt." — raw emotion right after the win</div>
+                <div class="tr-why"><div class="lbl">Why It Works</div><p>Raw emotion at a high-stakes moment. Short caption that hits before you can think. "For the belt" says everything in 3 words.</p></div>
+                <div class="tr-apply"><div class="lbl">Apply It</div><p>Film yourself right after a hard round. Caption: "for the belt." or "this is why I train." Sweat is the content.</p></div>
+              </div>
+            </div>
+
+            <div class="tr-card">
+              <div class="tr-thumb">
+                <div class="tr-thumb-bg" style="background:linear-gradient(180deg,#050510,#0a1030,#050510);"></div>
+                <div class="tr-thumb-content">
+                  <div style="border:1px solid rgba(255,255,255,0.15);border-radius:6px;padding:8px 12px;display:inline-block;">
+                    <div style="font-size:9px;color:#aaa;letter-spacing:2px;margin-bottom:4px;">ONE WEEK OUT</div>
+                    <div class="tr-ot" style="font-size:15px;line-height:1.1;">DE LOS SANTOS<br><span style="color:#b8912a;">vs</span><br>VALENZUELA</div>
+                  </div>
+                </div>
+                <div class="tr-views">👁 <span>1.5M</span></div>
+                <div class="tr-creator">@ufc</div>
+              </div>
+              <div class="tr-card-body">
+                <div class="tr-tag tr-tag-fight">Fight Promo</div>
+                <div class="tr-card-title">"X Weeks Out" Countdown Promo</div>
+                <div class="tr-caption">"ONE WEEK OUT — De Los Santos vs Valenzuela"</div>
+                <div class="tr-why"><div class="lbl">Why It Works</div><p>Creates anticipation and urgency. "X WEEKS OUT" is a proven viral trigger — it tells people something is coming. Bold graphic = shareable.</p></div>
+                <div class="tr-apply"><div class="lbl">Apply It</div><p>Post "2 WEEKS OUT" before your next fight or comp. Or "30 DAYS OUT" from a training milestone. Countdown content builds consistent viewers.</p></div>
+              </div>
+            </div>
+
+            <div class="tr-card">
+              <div class="tr-thumb">
+                <div class="tr-thumb-bg" style="background:linear-gradient(135deg,#0a0a0a,#1a1a2e);"></div>
+                <div class="tr-thumb-content">
+                  <div style="font-size:32px;margin-bottom:6px;">🏆</div>
+                  <div class="tr-ot" style="font-size:13px;">CHAMPIONSHIP BELT<br>REVEAL MOMENT</div>
+                </div>
+                <div class="tr-views">👁 <span>1.1M</span></div>
+                <div class="tr-creator">@ufc</div>
+              </div>
+              <div class="tr-card-body">
+                <div class="tr-tag tr-tag-bts">BTS</div>
+                <div class="tr-card-title">Behind-the-Scenes Belt / Trophy Moment</div>
+                <div class="tr-caption">Locker room / belt handling / championship access</div>
+                <div class="tr-why"><div class="lbl">Why It Works</div><p>Fans want access they can't get anywhere else. The belt is aspirational content. Being near it, touching it — all hit differently.</p></div>
+                <div class="tr-apply"><div class="lbl">Apply It</div><p>Film yourself with your gym's medals, trophies, or comp belts. Show the backstage. Access content builds loyalty.</p></div>
+              </div>
+            </div>
+
+            <div class="tr-card">
+              <div class="tr-thumb">
+                <div class="tr-thumb-bg" style="background:linear-gradient(135deg,#080808,#181818);"></div>
+                <div class="tr-thumb-content">
+                  <div style="font-size:28px;margin-bottom:6px;">🎙</div>
+                  <div class="tr-ot" style="font-size:13px;">TIGHT CLOSE-UP<br>FIGHTER INTERVIEW</div>
+                  <div style="font-size:10px;color:#b8912a;margin-top:6px;">UFC Paramount+</div>
+                </div>
+                <div class="tr-views">👁 <span>2.2M</span></div>
+                <div class="tr-creator">@ufc</div>
+              </div>
+              <div class="tr-card-body">
+                <div class="tr-tag tr-tag-fight">Interview</div>
+                <div class="tr-card-title">Tight Close-Up Fighter Interview Shot</div>
+                <div class="tr-caption">Mic in frame, sweaty, emotional, direct eye contact</div>
+                <div class="tr-why"><div class="lbl">Why It Works</div><p>The face fills the frame. There's nowhere to hide. When a fighter looks directly at the camera and speaks, it's magnetic. 2.2M views every time.</p></div>
+                <div class="tr-apply"><div class="lbl">Apply It</div><p>Film a talking head after training. Get close to the camera. Say one real thing. "I've been training 3 years for this." That's the reel.</p></div>
+              </div>
+            </div>
+
+            <div class="tr-card">
+              <div class="tr-thumb">
+                <div class="tr-thumb-bg" style="background:radial-gradient(ellipse at center,#1a0a0a,#050505);"></div>
+                <div class="tr-thumb-content">
+                  <div class="tr-ot" style="font-size:14px;color:#ff6b6b;">VICTORY / KO</div>
+                  <div style="font-size:24px;margin:6px 0;">🔥</div>
+                  <div class="tr-ot" style="font-size:12px;">ARMS RAISED<br>CELEBRATION</div>
+                </div>
+                <div class="tr-views">👁 <span>2.9M</span></div>
+                <div class="tr-creator">@ufc</div>
+              </div>
+              <div class="tr-card-body">
+                <div class="tr-tag tr-tag-fight">Victory Moment</div>
+                <div class="tr-card-title">Victory / Arms Raised / Unfiltered Win</div>
+                <div class="tr-caption">The exact moment of the win — unfiltered reaction</div>
+                <div class="tr-why"><div class="lbl">Why It Works</div><p>Everyone who's ever competed has wanted that moment. It triggers a visceral reaction — you feel it for them or want it for yourself. 2.9M views consistently.</p></div>
+                <div class="tr-apply"><div class="lbl">Apply It</div><p>Capture your win moment on video — competition, sparring milestone, or a big personal goal hit. Don't let it go unrecorded. Even small wins posted authentically build your story.</p></div>
+              </div>
+            </div>
+
+            <div class="tr-card">
+              <div class="tr-thumb">
+                <div class="tr-thumb-bg" style="background:linear-gradient(180deg,#0d0d14,#1a1a2a,#0d0d14);"></div>
+                <div class="tr-thumb-content">
+                  <div style="font-size:28px;">⚡</div>
+                  <div class="tr-ot" style="font-size:13px;margin-top:6px;">CINEMATIC<br>SOLO POSE<br>DRAMATIC LIGHT</div>
+                </div>
+                <div class="tr-views">👁 <span>3.2M</span></div>
+                <div class="tr-creator">@alexvolkanovski</div>
+              </div>
+              <div class="tr-card-body">
+                <div class="tr-tag tr-tag-motive">Cinematic</div>
+                <div class="tr-card-title">Dramatic Solo Fighter — Cinematic Lighting</div>
+                <div class="tr-caption">Fighter alone, one strong light source, no text needed</div>
+                <div class="tr-why"><div class="lbl">Why It Works</div><p>3.2M views on a fighter just standing there with good lighting. Production quality alone drives millions. The fighter looks like a warrior — no caption needed.</p></div>
+                <div class="tr-apply"><div class="lbl">Apply It</div><p>Find one corner of your gym with a strong single light source. Shorts on. Stand there. Film it vertical. 10 seconds. Post it. Your name. Gym. Nothing else.</p></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <hr class="tr-divider" />
+
+        <!-- ── INSTAGRAM PERSONAL BRAND ── -->
+        <div class="tr-section">
+          <div class="tr-section-header">
+            <div class="tr-platform-badge"><div class="tr-ig-dot"></div> Instagram</div>
+            <div class="tr-section-title">Personal Brand — @alexvolkanovski · @stylebender</div>
+            <div class="tr-section-count">5 Formats</div>
+          </div>
+          <div class="tr-platform-banner tr-ig-banner">
+            <div class="tr-icon">🥊</div>
+            <div>
+              <h4>What individual fighters post when building a personal brand</h4>
+              <p>Not just fight clips. This is the playbook for KMS members trying to grow their own audience between fights.</p>
+            </div>
+          </div>
+          <div class="tr-grid">
+
+            <div class="tr-card">
+              <div class="tr-thumb">
+                <div class="tr-thumb-bg" style="background:linear-gradient(135deg,#0a0a14,#1a0808);"></div>
+                <div class="tr-thumb-content">
+                  <div style="font-size:10px;color:#b8912a;font-weight:700;letter-spacing:2px;margin-bottom:6px;">🔥 HIGHEST OBSERVED</div>
+                  <div class="tr-ot" style="font-size:14px;line-height:1.3;">STAREDOWN /<br>CONFRONTATION<br>MOMENT</div>
+                  <div style="font-size:10px;color:#555;margin-top:6px;">Hotel lobby · face-off · tension</div>
+                </div>
+                <div class="tr-views">👁 <span>11.9M</span> 🔥</div>
+                <div class="tr-creator">@alexvolkanovski</div>
+              </div>
+              <div class="tr-card-body">
+                <div class="tr-tag tr-tag-drama">Drama / Tension</div>
+                <div class="tr-card-title">Confrontation / Staredown Moment</div>
+                <div class="tr-caption">11.9M views — single highest reel in this entire report</div>
+                <div class="tr-why"><div class="lbl">Why It Works</div><p>Conflict is the most primal form of content. No voiceover needed. Two fighters in the same space — the tension does all the work. Everyone watches to the end.</p></div>
+                <div class="tr-apply"><div class="lbl">Apply It</div><p>Capture any moment where two training partners square up, challenge each other, or have an intense exchange — even in the gym. Just film it when it happens.</p></div>
+              </div>
+            </div>
+
+            <div class="tr-card">
+              <div class="tr-thumb">
+                <div class="tr-thumb-bg" style="background:linear-gradient(160deg,#0a0a0a,#1a1010);"></div>
+                <div class="tr-thumb-content">
+                  <div style="background:rgba(0,200,200,0.08);border:1px solid rgba(0,200,200,0.25);border-radius:5px;padding:8px 12px;display:inline-block;">
+                    <div style="font-size:9px;color:#60e0e0;letter-spacing:1.5px;font-weight:700;">TENSION AT</div>
+                    <div class="tr-ot" style="font-size:15px;">TRAINING SESH</div>
+                  </div>
+                </div>
+                <div class="tr-views">👁 <span>2.5M</span></div>
+                <div class="tr-creator">@alexvolkanovski</div>
+              </div>
+              <div class="tr-card-body">
+                <div class="tr-tag tr-tag-drama">Drama / BTS</div>
+                <div class="tr-card-title">"Tension At [Location]" Training BTS</div>
+                <div class="tr-caption">"TENSION AT BUFFY TRAINING SESH" — 2.5M views</div>
+                <div class="tr-why"><div class="lbl">Why It Works</div><p>The title format "TENSION AT ___" creates instant curiosity. Training content on its own gets moderate views — add "tension" and it multiplies. People want drama in the gym.</p></div>
+                <div class="tr-apply"><div class="lbl">Apply It</div><p>Any hard round becomes "TENSION AT [gym name]." Name the gym, name the partner. It turns everyday training into appointment content.</p></div>
+              </div>
+            </div>
+
+            <div class="tr-card">
+              <div class="tr-thumb">
+                <div class="tr-thumb-bg" style="background:linear-gradient(135deg,#0e0e0a,#1a180a);"></div>
+                <div class="tr-thumb-content">
+                  <div style="background:rgba(220,30,30,0.75);display:inline-block;padding:6px 12px;border-radius:4px;">
+                    <div class="tr-ot" style="font-size:14px;line-height:1.2;">VOLK TRIED TO<br>SAVE A CHICKEN</div>
+                  </div>
+                  <div style="font-size:10px;color:#555;margin-top:6px;">Podcast clip · punchy title</div>
+                </div>
+                <div class="tr-views">👁 <span>330K</span></div>
+                <div class="tr-creator">@alexvolkanovski</div>
+              </div>
+              <div class="tr-card-body">
+                <div class="tr-tag tr-tag-humor">Humor / Personality</div>
+                <div class="tr-card-title">Funny Story Clip With Bold Text Overlay</div>
+                <div class="tr-caption">"VOLK TRIED TO SAVE A CHICKEN" — shows personality</div>
+                <div class="tr-why"><div class="lbl">Why It Works</div><p>Fighters who only post fight content feel one-dimensional. People don't follow fighters — they follow characters. A funny story humanizes a world champion.</p></div>
+                <div class="tr-apply"><div class="lbl">Apply It</div><p>Tell one funny story from training. Use a ridiculous bold title: "I GOT CHOKED BY A 16-YEAR-OLD." "MY GYM HAS A GHOST." Make them want to hear it.</p></div>
+              </div>
+            </div>
+
+            <div class="tr-card">
+              <div class="tr-thumb">
+                <div class="tr-thumb-bg" style="background:linear-gradient(135deg,#0a0a12,#12100a);"></div>
+                <div class="tr-thumb-content">
+                  <div style="font-size:9px;color:#7dca7d;letter-spacing:2px;font-weight:700;margin-bottom:6px;">PRIDE / HYPE</div>
+                  <div class="tr-ot" style="font-size:18px;line-height:1.2;">BRING IT<br>TO MY CITY</div>
+                </div>
+                <div class="tr-views">👁 <span>1M</span></div>
+                <div class="tr-creator">@stylebender</div>
+              </div>
+              <div class="tr-card-body">
+                <div class="tr-tag tr-tag-life">Lifestyle / Pride</div>
+                <div class="tr-card-title">"Bring It To My City" — Local Pride Content</div>
+                <div class="tr-caption">Fighter repping their hometown, gym, or country</div>
+                <div class="tr-why"><div class="lbl">Why It Works</div><p>Geographic identity is massively shareable. "He's repping us" is an emotion that drives shares more than likes. Pure pride content hits 1M+ consistently.</p></div>
+                <div class="tr-apply"><div class="lbl">Apply It</div><p>"My city trains different." "This gym is mine." Rep your gym, your city, your country. Build a tribe, not just a following.</p></div>
+              </div>
+            </div>
+
+            <div class="tr-card">
+              <div class="tr-thumb">
+                <div class="tr-thumb-bg" style="background:radial-gradient(ellipse at bottom,#2a0a00,#050505);"></div>
+                <div class="tr-thumb-content">
+                  <div style="font-size:28px;margin-bottom:6px;">🔥</div>
+                  <div class="tr-ot" style="font-size:18px;color:#ff8040;line-height:1.2;">HE COMES<br>BACK</div>
+                  <div style="font-size:10px;color:#444;margin-top:6px;">Comeback arc · fire visual</div>
+                </div>
+                <div class="tr-creator">@stylebender</div>
+              </div>
+              <div class="tr-card-body">
+                <div class="tr-tag tr-tag-motive">Comeback Narrative</div>
+                <div class="tr-card-title">"He Comes Back" — Comeback / Return Arc</div>
+                <div class="tr-caption">Fire overlay, dramatic tone, pure narrative tension</div>
+                <div class="tr-why"><div class="lbl">Why It Works</div><p>The comeback story is the most universal narrative in sport. After a loss or injury — "he comes back" triggers the underdog emotion in every viewer.</p></div>
+                <div class="tr-apply"><div class="lbl">Apply It</div><p>Had a bad run? Coming back from injury? "I'm back." Three words. That's the reel. Film yourself in the gym after a break. Let the return speak.</p></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <hr class="tr-divider" />
+
+        <!-- ── TIKTOK ── -->
+        <div class="tr-section">
+          <div class="tr-section-header">
+            <div class="tr-platform-badge"><div class="tr-tt-dot"></div> TikTok</div>
+            <div class="tr-section-title">#mma Trending — 8M Total Posts</div>
+            <div class="tr-section-count">6 Formats</div>
+          </div>
+          <div class="tr-platform-banner tr-tt-banner">
+            <div class="tr-icon">🎵</div>
+            <div>
+              <h4>TikTok #mma — What's moving right now (June 2026)</h4>
+              <p>TikTok rewards hooks and consistency over production quality. These formats are winning the algorithm this week.</p>
+            </div>
+          </div>
+          <div class="tr-grid">
+
+            <div class="tr-card">
+              <div class="tr-thumb">
+                <div class="tr-thumb-bg" style="background:linear-gradient(135deg,#0d0000,#1a0505);"></div>
+                <div class="tr-thumb-content">
+                  <div style="background:rgba(255,0,0,0.15);border:1px solid rgba(255,80,80,0.35);border-radius:5px;padding:8px 12px;">
+                    <div style="font-size:9px;color:#ff8080;letter-spacing:2px;font-weight:700;margin-bottom:3px;">🔥 VIRAL FORMAT</div>
+                    <div class="tr-ot" style="font-size:14px;">COLD-BLOODED<br>UFC FINISHES</div>
+                  </div>
+                </div>
+                <div class="tr-creator">@courtvision88 (UFC ✓)</div>
+              </div>
+              <div class="tr-card-body">
+                <div class="tr-tag tr-tag-fight">Finish Compilation</div>
+                <div class="tr-card-title">"Cold-Blooded [Type] Finishes" Compilation</div>
+                <div class="tr-caption">"Cold — Blooded UFC Finishes 🔥" — UFC verified</div>
+                <div class="tr-why"><div class="lbl">Why It Works</div><p>"Cold-Blooded" does the heavy lifting. Generic "knockouts" gets ignored. The adjective before the format is the entire hook. One word changes everything.</p></div>
+                <div class="tr-apply"><div class="lbl">Apply It</div><p>Stop captioning fight clips with just "KO." Use emotion: "The most VIOLENT submission I've ever seen." "The CLEANEST head kick this year." One strong adjective.</p></div>
+              </div>
+            </div>
+
+            <div class="tr-card">
+              <div class="tr-thumb">
+                <div class="tr-thumb-bg" style="background:linear-gradient(135deg,#060610,#100620);"></div>
+                <div class="tr-thumb-content">
+                  <div style="font-size:9px;color:#d07ef0;letter-spacing:2px;font-weight:700;margin-bottom:6px;">💬 HOT TAKE</div>
+                  <div class="tr-ot" style="font-size:16px;line-height:1.3;">BIGGEST<br>ROBBERY<br>IN UFC 😢</div>
+                </div>
+                <div class="tr-creator">@danikmma_</div>
+              </div>
+              <div class="tr-card-body">
+                <div class="tr-tag tr-tag-drama">Hot Take / Opinion</div>
+                <div class="tr-card-title">"Biggest [Controversy] in UFC" Hot Take</div>
+                <div class="tr-caption">"Biggest robbery in UFC 😢" — triggers comments instantly</div>
+                <div class="tr-why"><div class="lbl">Why It Works</div><p>Controversy = comments. Comments = algorithm boost. "Robbery" is one of MMA's most charged words. Everyone has an opinion. The title does all the work.</p></div>
+                <div class="tr-apply"><div class="lbl">Apply It</div><p>"The most underrated technique in MMA." "The #1 mistake gyms make." State a strong opinion. Let the comments section run. Don't be afraid to be wrong — it drives engagement.</p></div>
+              </div>
+            </div>
+
+            <div class="tr-card">
+              <div class="tr-thumb">
+                <div class="tr-thumb-bg" style="background:linear-gradient(160deg,#040c14,#0a1520);"></div>
+                <div class="tr-thumb-content">
+                  <div style="font-size:9px;color:#7eb8f7;letter-spacing:2px;font-weight:700;margin-bottom:6px;">📚 EDUCATIONAL</div>
+                  <div class="tr-ot" style="font-size:18px;line-height:1.1;">MUAY THAI<br>IN MMA</div>
+                  <div style="font-size:14px;color:#7eb8f7;margin-top:4px;font-weight:700;">pt. 1</div>
+                </div>
+                <div class="tr-creator">@liveandbreathemu</div>
+              </div>
+              <div class="tr-card-body">
+                <div class="tr-tag tr-tag-edu">Education / Series</div>
+                <div class="tr-card-title">"[Style] In MMA — Part 1" Series Format</div>
+                <div class="tr-caption">"Muay Thai in MMA pt. 1" — series drives repeat views</div>
+                <div class="tr-why"><div class="lbl">Why It Works</div><p>"Pt. 1" tells the viewer there's more coming — they have to follow to get it. Series formats build authority and create appointment viewing. Repeat viewers = algorithm gold.</p></div>
+                <div class="tr-apply"><div class="lbl">Apply It</div><p>"Discipline in martial arts — pt. 1." "What nobody tells you about fighting — pt. 1." Pick a topic you know deeply and break it into a series. Never give everything in one video.</p></div>
+              </div>
+            </div>
+
+            <div class="tr-card">
+              <div class="tr-thumb">
+                <div class="tr-thumb-bg" style="background:linear-gradient(135deg,#060410,#0e0820);"></div>
+                <div class="tr-thumb-content">
+                  <div style="font-size:9px;color:#7dca7d;letter-spacing:2px;font-weight:700;margin-bottom:6px;">🥋 TECHNIQUE</div>
+                  <div style="background:rgba(255,255,255,0.08);border-radius:5px;padding:8px 14px;display:inline-block;">
+                    <div class="tr-ot" style="font-size:24px;letter-spacing:3px;">SQUEEZING</div>
+                  </div>
+                  <div style="font-size:10px;color:#444;margin-top:6px;">PFL · Submission footage</div>
+                </div>
+                <div class="tr-creator">@alexei_pergande</div>
+              </div>
+              <div class="tr-card-body">
+                <div class="tr-tag tr-tag-edu">Technique</div>
+                <div class="tr-card-title">Single Word Overlay on Technique Clip</div>
+                <div class="tr-caption">"SQUEEZING" — one word makes you feel the choke</div>
+                <div class="tr-why"><div class="lbl">Why It Works</div><p>One word. That's the whole caption. "SQUEEZING" makes you feel it. Technique content with heavy text gets scrolled. A single word that describes the sensation stops the scroll.</p></div>
+                <div class="tr-apply"><div class="lbl">Apply It</div><p>Next time you film a technique, use one word: "CRACKING." "TORQUING." "CONTROLLED." "RELENTLESS." One word + the visual = the entire reel.</p></div>
+              </div>
+            </div>
+
+            <div class="tr-card">
+              <div class="tr-thumb">
+                <div class="tr-thumb-bg" style="background:linear-gradient(135deg,#0a0a08,#181610);"></div>
+                <div class="tr-thumb-content">
+                  <div style="font-size:9px;color:#f0d060;letter-spacing:2px;font-weight:700;margin-bottom:6px;">😅 HUMOR</div>
+                  <div class="tr-ot-sm">"Ragebaiting an ex UFC<br>fighter gone wrong 😂"</div>
+                  <div style="font-size:10px;color:#444;margin-top:6px;">Talking to camera · no edit needed</div>
+                </div>
+                <div class="tr-creator">@divothegrayyt</div>
+              </div>
+              <div class="tr-card-body">
+                <div class="tr-tag tr-tag-humor">Humor / Story</div>
+                <div class="tr-card-title">Reaction Story — Talking Head With Punchy Title</div>
+                <div class="tr-caption">"Ragebaiting an ex UFC fighter gone wrong 😂"</div>
+                <div class="tr-why"><div class="lbl">Why It Works</div><p>The title promises a story. Face-to-camera creates intimacy. "Gone wrong" implies chaos — people stay to hear the whole thing. No editing needed, just real storytelling.</p></div>
+                <div class="tr-apply"><div class="lbl">Apply It</div><p>"I challenged [someone] and it went wrong." "I tried [technique] for the first time and…" The "gone wrong" structure is a proven hook. No fighting footage required.</p></div>
+              </div>
+            </div>
+
+            <div class="tr-card">
+              <div class="tr-thumb">
+                <div class="tr-thumb-bg" style="background:linear-gradient(135deg,#080808,#101010);filter:grayscale(0.7);"></div>
+                <div class="tr-thumb-content">
+                  <div style="font-size:9px;color:#b8912a;letter-spacing:2px;font-weight:700;margin-bottom:8px;">🖤 MOTIVATION</div>
+                  <div style="border-left:2px solid #b8912a;padding:6px 10px;text-align:left;display:inline-block;">
+                    <div class="tr-ot-sm">"Even a wounded lion<br>is still a..."</div>
+                  </div>
+                  <div style="font-size:9px;color:#333;margin-top:6px;">B&W fighter image</div>
+                </div>
+                <div class="tr-creator">@edgoliveiramma</div>
+              </div>
+              <div class="tr-card-body">
+                <div class="tr-tag tr-tag-motive">Quote / Motivation</div>
+                <div class="tr-card-title">Motivational Quote Over B&W Fighter Image</div>
+                <div class="tr-caption">"Even a wounded lion is still a..." — cliffhanger quote</div>
+                <div class="tr-why"><div class="lbl">Why It Works</div><p>The "..." forces the viewer to tap for the rest. B&W signals seriousness. Quote format is high-share because people send it as inspiration. Reposts = algorithm boost.</p></div>
+                <div class="tr-apply"><div class="lbl">Apply It</div><p>Take something you've said in training. Put it over a B&W photo of yourself. Trail off with "..." and finish it in the caption. Make it shareable and people will share it for you.</p></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <hr class="tr-divider" />
+
+        <!-- FORMAT TABLE -->
+        <div class="tr-section">
+          <div class="tr-section-header">
+            <div class="tr-section-title">📊 Format Breakdown — Ranked by Virality</div>
+          </div>
+          <div class="tr-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Format</th>
+                  <th>Platform</th>
+                  <th>Virality</th>
+                  <th>Skill Needed</th>
+                  <th>Best For</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong style="color:#ccc;">Confrontation / Tension Clip</strong></td>
+                  <td>IG + TT</td>
+                  <td><div class="tr-score"><div class="tr-bar tr-bar-hi"></div><span style="font-size:10px;color:#4CAF50;">11.9M+</span></div></td>
+                  <td>Low — just film it</td>
+                  <td>Fighters who train with others</td>
+                </tr>
+                <tr>
+                  <td><strong style="color:#ccc;">Cinematic Solo / Dramatic Lighting</strong></td>
+                  <td>IG</td>
+                  <td><div class="tr-score"><div class="tr-bar tr-bar-hi" style="width:75%;"></div><span style="font-size:10px;color:#4CAF50;">3.2M+</span></div></td>
+                  <td>Medium — need lighting</td>
+                  <td>Any martial artist</td>
+                </tr>
+                <tr>
+                  <td><strong style="color:#ccc;">Victory / Comeback Moment</strong></td>
+                  <td>IG + TT</td>
+                  <td><div class="tr-score"><div class="tr-bar tr-bar-hi" style="width:68%;"></div><span style="font-size:10px;color:#4CAF50;">2–3M+</span></div></td>
+                  <td>Low — capture it</td>
+                  <td>Competitors, comeback stories</td>
+                </tr>
+                <tr>
+                  <td><strong style="color:#ccc;">Hot Take / Controversy Opinion</strong></td>
+                  <td>TT</td>
+                  <td><div class="tr-score"><div class="tr-bar tr-bar-med"></div><span style="font-size:10px;color:#b8912a;">Comment-driven</span></div></td>
+                  <td>Low — strong opinion</td>
+                  <td>Anyone with knowledge</td>
+                </tr>
+                <tr>
+                  <td><strong style="color:#ccc;">Educational Series ("pt. 1")</strong></td>
+                  <td>TT + IG</td>
+                  <td><div class="tr-score"><div class="tr-bar tr-bar-med" style="width:55%;"></div><span style="font-size:10px;color:#b8912a;">Builds followers</span></div></td>
+                  <td>Medium — needs expertise</td>
+                  <td>Coaches, experienced fighters</td>
+                </tr>
+                <tr>
+                  <td><strong style="color:#ccc;">Humor / Story ("gone wrong")</strong></td>
+                  <td>TT</td>
+                  <td><div class="tr-score"><div class="tr-bar tr-bar-med" style="width:50%;"></div><span style="font-size:10px;color:#b8912a;">Share-driven</span></div></td>
+                  <td>Medium — needs delivery</td>
+                  <td>Charismatic fighters</td>
+                </tr>
+                <tr>
+                  <td><strong style="color:#ccc;">Motivational Quote / B&amp;W</strong></td>
+                  <td>TT + IG</td>
+                  <td><div class="tr-score"><div class="tr-bar tr-bar-lo"></div><span style="font-size:10px;color:#555;">Save/share only</span></div></td>
+                  <td>Very Low — design only</td>
+                  <td>Growing accounts, early stage</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <hr class="tr-divider" />
+
+        <!-- ACTION PLAN -->
+        <div class="tr-section">
+          <div class="tr-section-header">
+            <div class="tr-section-title">⚡ Week 1 Action Plan for KMS Members</div>
+          </div>
+          <div class="tr-action-grid">
+            <div class="tr-action-card">
+              <div class="tr-action-num">1</div>
+              <h4>Film Your Next Training Session</h4>
+              <p>Go to the gym this week with your phone set up to record. You need:</p>
+              <ul>
+                <li>One intense sparring or drilling round</li>
+                <li>One moment of tension between you and a partner</li>
+                <li>Your face after a hard round — no filter, no cleanup</li>
+              </ul>
+            </div>
+            <div class="tr-action-card">
+              <div class="tr-action-num">2</div>
+              <h4>Post With One of These Titles</h4>
+              <p>Use the exact formats working right now:</p>
+              <ul>
+                <li>"TENSION AT [your gym name]"</li>
+                <li>"I've been training [X] years for this"</li>
+                <li>"The [technique] nobody talks about — pt. 1"</li>
+                <li>"Gone wrong: I challenged [partner] and…"</li>
+              </ul>
+            </div>
+            <div class="tr-action-card">
+              <div class="tr-action-num">3</div>
+              <h4>Film Yourself Talking</h4>
+              <p>Most underutilized format. Stand in front of a camera and say:</p>
+              <ul>
+                <li>One hard truth about training</li>
+                <li>One story from your martial arts journey</li>
+                <li>One strong opinion about the sport</li>
+                <li>No script. 30–60 seconds. Done.</li>
+              </ul>
+            </div>
+            <div class="tr-action-card">
+              <div class="tr-action-num">4</div>
+              <h4>Find the Light in Your Gym</h4>
+              <p>The 3.2M reel was a fighter just standing in good lighting. This week:</p>
+              <ul>
+                <li>Find a corner with one strong light source</li>
+                <li>Film 10 seconds — no text, no music</li>
+                <li>Post it. Caption: your name. Gym. Nothing else.</li>
+              </ul>
+            </div>
+            <div class="tr-action-card">
+              <div class="tr-action-num">5</div>
+              <h4>Post to Both Platforms</h4>
+              <p>Same content, two places. What works on one works on both. Remove TikTok watermark before crossposting to IG Reels.</p>
+              <ul>
+                <li>TikTok: favor sound, trends, text overlay</li>
+                <li>Instagram: favor visuals, cinematic quality, captions</li>
+              </ul>
+            </div>
+            <div class="tr-action-card">
+              <div class="tr-action-num">6</div>
+              <h4>Bring It Into the Brotherhood</h4>
+              <p>Post your content in the KMS chat when you publish. The brotherhood helps boost early engagement — which is what the algorithm needs in the first 30 minutes.</p>
+              <ul>
+                <li>Share the reel in the group chat</li>
+                <li>Ask members to watch + comment</li>
+                <li>Comment on theirs back</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tr-footer-note">
+          King Maker Society LLC · Trend Report · June 2026 · @kingmakersocial<br>
+          Data captured live from @ufc, @alexvolkanovski, @stylebender · TikTok #mma (8M posts) · Updated Mondays 12PM CST
+        </div>
+
+      </div>
+      <!-- end #pp-trends -->
+
     </div>
   </div>
 
-  <!-- Sign out -->
   <button class="lock-pill" id="lockBtn">Sign Out</button>
 </div>
 
@@ -588,8 +1548,8 @@
   'use strict';
 
   /* ─── ANIMATED BACKGROUND ─── */
-  const canvas = document.getElementById('kms-canvas');
-  const ctx = canvas.getContext('2d');
+  var canvas = document.getElementById('kms-canvas');
+  var ctx = canvas.getContext('2d');
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -598,7 +1558,6 @@
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
 
-  /* Particles (rising embers) */
   function Particle() { this.reset(true); }
   Particle.prototype.reset = function (init) {
     this.x = Math.random() * canvas.width;
@@ -619,8 +1578,8 @@
     this.x += this.speedX;
     this.life++;
     this.twinkle += this.twinkleSpeed;
-    const half = this.maxLife / 2;
-    const base = this.life < half
+    var half = this.maxLife / 2;
+    var base = this.life < half
       ? (this.life / half) * this.maxOpacity
       : ((this.maxLife - this.life) / half) * this.maxOpacity;
     this.opacity = base * (0.75 + 0.25 * Math.sin(this.twinkle));
@@ -630,7 +1589,7 @@
     if (this.opacity <= 0) return;
     ctx.save();
     ctx.globalAlpha = Math.max(0, this.opacity);
-    const r = this.gold ? '184,145,42' : '220,180,80';
+    var r = this.gold ? '184,145,42' : '220,180,80';
     ctx.shadowBlur = 8;
     ctx.shadowColor = 'rgba(' + r + ',0.8)';
     ctx.fillStyle = 'rgba(' + r + ',1)';
@@ -640,7 +1599,6 @@
     ctx.restore();
   };
 
-  /* Slow glow orbs */
   function Orb() {
     this.x = Math.random() * window.innerWidth;
     this.y = Math.random() * window.innerHeight;
@@ -656,15 +1614,15 @@
     this.x += this.vx;
     this.y += this.vy;
     this.pulse += this.pulseSpeed;
-    const w = canvas.width, h = canvas.height;
+    var w = canvas.width, h = canvas.height;
     if (this.x < -this.r) this.x = w + this.r;
     if (this.x > w + this.r) this.x = -this.r;
     if (this.y < -this.r) this.y = h + this.r;
     if (this.y > h + this.r) this.y = -this.r;
   };
   Orb.prototype.draw = function () {
-    const op = this.opacity * (0.8 + 0.2 * Math.sin(this.pulse));
-    const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
+    var op = this.opacity * (0.8 + 0.2 * Math.sin(this.pulse));
+    var g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
     g.addColorStop(0, 'rgba(' + this.hue + ',' + op + ')');
     g.addColorStop(1, 'rgba(' + this.hue + ',0)');
     ctx.fillStyle = g;
@@ -673,10 +1631,9 @@
     ctx.fill();
   };
 
-  var particles = [];
-  var orbs = [];
+  var particles = [], orbs = [];
   for (var i = 0; i < 130; i++) particles.push(new Particle());
-  for (var j = 0; j < 6; j++) orbs.push(new Orb());
+  for (var j = 0; j < 6;   j++) orbs.push(new Orb());
 
   function animateBg() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -689,16 +1646,17 @@
   animateBg();
 
   /* ─── PORTAL LOGIC ─── */
-  const sections = ['brief', 'captions', 'strategy', 'fightiq'];
+  var dataSections = ['brief', 'captions', 'strategy', 'fightiq'];
+  var allTabs      = ['brief', 'captions', 'strategy', 'fightiq', 'trends'];
 
   function loadContent() {
-    sections.forEach(function (key) {
-      const el = document.getElementById('kms-' + key + '-data');
+    dataSections.forEach(function (key) {
+      var el = document.getElementById('kms-' + key + '-data');
       if (!el) return;
       try {
-        const data = JSON.parse(el.textContent);
-        const ct = document.getElementById('ct-' + key);
-        const dt = document.getElementById('dt-' + key);
+        var data = JSON.parse(el.textContent);
+        var ct = document.getElementById('ct-' + key);
+        var dt = document.getElementById('dt-' + key);
         if (ct && data.content) ct.textContent = data.content;
         if (dt && data.date) dt.textContent = data.date;
       } catch (e) {}
@@ -719,14 +1677,14 @@
   }
 
   function switchTab(name) {
-    sections.forEach(function (key) {
-      const pp = document.getElementById('pp-' + key);
-      const tab = document.querySelector('[data-tab="' + key + '"]');
+    allTabs.forEach(function (key) {
+      var pp  = document.getElementById('pp-' + key);
+      var tab = document.querySelector('[data-tab="' + key + '"]');
       if (key === name) {
-        pp && pp.classList.add('on');
+        pp  && pp.classList.add('on');
         tab && tab.classList.add('on');
       } else {
-        pp && pp.classList.remove('on');
+        pp  && pp.classList.remove('on');
         tab && tab.classList.remove('on');
       }
     });
@@ -734,8 +1692,8 @@
 
   /* Entry button */
   document.getElementById('entryBtn').addEventListener('click', function () {
-    const email = document.getElementById('emailInput').value.trim();
-    const errEl = document.getElementById('entryError');
+    var email = document.getElementById('emailInput').value.trim();
+    var errEl = document.getElementById('entryError');
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       errEl.classList.add('show');
       return;
@@ -754,7 +1712,7 @@
 
   /* Tabs */
   document.getElementById('portalTabs').addEventListener('click', function (e) {
-    const tab = e.target.closest('[data-tab]');
+    var tab = e.target.closest('[data-tab]');
     if (tab) switchTab(tab.dataset.tab);
   });
 
